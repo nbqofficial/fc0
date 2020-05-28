@@ -343,26 +343,17 @@ double Board::Evaluate()
 	}
 }
 
-double Board::EvaluateMaterial()
+int Board::EvaluateMCTS()
 {
-	double score = 0.0;
+	int score = 0;
 	for (int i = 0; i < 8; ++i)
 	{
 		for (int j = 0; j < 8; ++j)
 		{
-			score += (double)this->boardState[SquareTo120(i, j)];
+			score += this->boardState[SquareTo120(i, j)];
 		}
 	}
-
-
-	if (this->side == SIDE_WHITE)
-	{
-		return score;
-	}
-	else
-	{
-		return -score;
-	}
+	return score;
 }
 
 void Board::SwitchSide()

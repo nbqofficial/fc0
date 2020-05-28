@@ -11,7 +11,7 @@
 
 // defines
 #define ENGINE_NAME "fc0"
-#define ENGINE_VERSION "51"
+#define ENGINE_VERSION "52"
 #define ENGINE_AUTHOR "nbqofficial"
 
 #define WHITE_PAWN 1
@@ -44,7 +44,8 @@
 #define MAX_PROBABILITY 1000.0
 #define PROBABILITY_LIMIT 0.0000001
 
-#define NULL_MOVE_R 2
+#define NULL_MOVE_R 3
+#define MCTS_WIN_FACTOR 1
 
 #define START_FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 #define WAC1 "2rr3k/pp3pp1/1nnqbN1p/3pN3/2pP4/2P3Q1/PPB4P/R4RK1 w - - 0 1" // Qg6
@@ -119,7 +120,7 @@ typedef struct _SEARCHINFO
 // enums
 enum SIDE { SIDE_WHITE, SIDE_BLACK, SIDE_NONE };
 
-enum SEARCH_METHOD { METHOD_NEGAMAX, METHOD_PTS };
+enum SEARCH_METHOD { METHOD_NEGAMAX, METHOD_PTS, METHOD_MCTS };
 
 enum MOVEGEN_TYPE { GEN_ALL, GEN_VIOLENT, GEN_QUIET };
 

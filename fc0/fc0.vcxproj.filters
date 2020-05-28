@@ -43,6 +43,9 @@
     <Filter Include="Header Files\Search\Negamax">
       <UniqueIdentifier>{29e3260d-67dc-44ed-a5ae-d7934fde50bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Search\MonteCarlo">
+      <UniqueIdentifier>{49def97b-3276-4d1d-94d1-fc2ba0c46ea7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -77,6 +80,12 @@
     </ClCompile>
     <ClCompile Include="pts.cpp">
       <Filter>Header Files\Search\PTS</Filter>
+    </ClCompile>
+    <ClCompile Include="node.cpp">
+      <Filter>Header Files\Search\MonteCarlo</Filter>
+    </ClCompile>
+    <ClCompile Include="mcts.cpp">
+      <Filter>Header Files\Search\MonteCarlo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="pts.h">
       <Filter>Header Files\Search\PTS</Filter>
+    </ClInclude>
+    <ClInclude Include="node.h">
+      <Filter>Header Files\Search\MonteCarlo</Filter>
+    </ClInclude>
+    <ClInclude Include="mcts.h">
+      <Filter>Header Files\Search\MonteCarlo</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
