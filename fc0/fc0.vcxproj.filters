@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Chess">
+      <UniqueIdentifier>{6afa56e5-ba8d-4ae2-8f5a-7c574f40046d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Globals">
+      <UniqueIdentifier>{b8c894b2-5940-49c5-b5ed-5e5532fa415c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Perft">
+      <UniqueIdentifier>{3538a228-756d-44c6-8d71-3e0d7d900c49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Search">
+      <UniqueIdentifier>{c0712d99-9b12-4233-a72e-6e2e284907e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Search\PTS">
+      <UniqueIdentifier>{f5ab89fb-f654-46c6-9956-6a23b9ca4328}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Uci">
+      <UniqueIdentifier>{66501d3a-1629-4021-b151-db50735dc59a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\HiveMind">
+      <UniqueIdentifier>{9af2bf86-c144-41ae-8d32-e0dc61de12ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Networks">
+      <UniqueIdentifier>{00cad70f-41b8-430e-aa31-032acadb165e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Training">
+      <UniqueIdentifier>{71f2a6f7-d4c0-4a50-baa5-9489e4f15baa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Search\Negamax">
+      <UniqueIdentifier>{29e3260d-67dc-44ed-a5ae-d7934fde50bf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="board.cpp">
+      <Filter>Header Files\Chess</Filter>
+    </ClCompile>
+    <ClCompile Include="chess.cpp">
+      <Filter>Header Files\Chess</Filter>
+    </ClCompile>
+    <ClCompile Include="helper.cpp">
+      <Filter>Header Files\Globals</Filter>
+    </ClCompile>
+    <ClCompile Include="perft.cpp">
+      <Filter>Header Files\Perft</Filter>
+    </ClCompile>
+    <ClCompile Include="search.cpp">
+      <Filter>Header Files\Search</Filter>
+    </ClCompile>
+    <ClCompile Include="uci.cpp">
+      <Filter>Header Files\Uci</Filter>
+    </ClCompile>
+    <ClCompile Include="valuenet.cpp">
+      <Filter>Header Files\Networks</Filter>
+    </ClCompile>
+    <ClCompile Include="training.cpp">
+      <Filter>Header Files\Training</Filter>
+    </ClCompile>
+    <ClCompile Include="negamax.cpp">
+      <Filter>Header Files\Search\Negamax</Filter>
+    </ClCompile>
+    <ClCompile Include="pts.cpp">
+      <Filter>Header Files\Search\PTS</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="board.h">
+      <Filter>Header Files\Chess</Filter>
+    </ClInclude>
+    <ClInclude Include="chess.h">
+      <Filter>Header Files\Chess</Filter>
+    </ClInclude>
+    <ClInclude Include="definitions.h">
+      <Filter>Header Files\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="helper.h">
+      <Filter>Header Files\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="perft.h">
+      <Filter>Header Files\Perft</Filter>
+    </ClInclude>
+    <ClInclude Include="search.h">
+      <Filter>Header Files\Search</Filter>
+    </ClInclude>
+    <ClInclude Include="uci.h">
+      <Filter>Header Files\Uci</Filter>
+    </ClInclude>
+    <ClInclude Include="neuron.h">
+      <Filter>Header Files\HiveMind</Filter>
+    </ClInclude>
+    <ClInclude Include="layer.h">
+      <Filter>Header Files\HiveMind</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix.h">
+      <Filter>Header Files\HiveMind</Filter>
+    </ClInclude>
+    <ClInclude Include="hivemind.h">
+      <Filter>Header Files\HiveMind</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>Header Files\HiveMind</Filter>
+    </ClInclude>
+    <ClInclude Include="valuenet.h">
+      <Filter>Header Files\Networks</Filter>
+    </ClInclude>
+    <ClInclude Include="training.h">
+      <Filter>Header Files\Training</Filter>
+    </ClInclude>
+    <ClInclude Include="negamax.h">
+      <Filter>Header Files\Search\Negamax</Filter>
+    </ClInclude>
+    <ClInclude Include="pts.h">
+      <Filter>Header Files\Search\PTS</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
