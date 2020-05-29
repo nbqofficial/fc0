@@ -11,7 +11,7 @@
 
 // defines
 #define ENGINE_NAME "fc0"
-#define ENGINE_VERSION "52"
+#define ENGINE_VERSION "53"
 #define ENGINE_AUTHOR "nbqofficial"
 
 #define WHITE_PAWN 1
@@ -44,7 +44,7 @@
 #define MAX_PROBABILITY 1000.0
 #define PROBABILITY_LIMIT 0.0000001
 
-#define NULL_MOVE_R 3
+#define NULL_MOVE_R 2
 #define MCTS_WIN_FACTOR 1
 
 #define START_FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"

@@ -56,7 +56,7 @@ double PTS::NegaPTS(Board board, double probability, double alpha, double beta, 
 	{
 		std::vector<MOVE> cpv;
 		board.SwitchSide();
-		score = -NegaPTS(board, (probability / pow(10.0, NULL_MOVE_R)), -beta, -beta + 1, cpv, false);
+		score = -NegaPTS(board, (probability / pow(10.0, (NULL_MOVE_R + 1))), -beta, -beta + 1, cpv, false);
 		board.SwitchSide();
 		if (score >= beta && abs(alpha) < (MATE_SCORE - MAX_DEPTH))
 		{
