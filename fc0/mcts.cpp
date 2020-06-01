@@ -37,12 +37,12 @@ MOVE MCTS::Go(Board board, int depth)
 		int score = 0;
 		Node* bestNode = Select();
 		Node* expanded = bestNode->Expand();
-		SIDE simulationWinnder = expanded->Simulate(depth, score);
+		SIDE simulationWinner = expanded->Simulate(depth, score);
 		//printf("%d\n", score);
-		BackPropagate(expanded, simulationWinnder, score);
+		BackPropagate(expanded, simulationWinner, score);
 		CheckUp();
 	}
-
+	//this->root->DisplayMoveProbabilities();
 	MOVE bestMove = root->GetMostVisitedMove();
 	ClearSearchInfo();
 	return bestMove;

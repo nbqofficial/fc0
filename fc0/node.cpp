@@ -105,11 +105,7 @@ void Node::Update(SIDE winner, int score)
 	}
 	if (winner == prevSide)
 	{
-		this->wins += (10 * score);
-	}
-	else if (winner == SIDE_NONE)
-	{
-		this->wins += 5;
+		this->wins += score;
 	}
 }
 
@@ -123,6 +119,14 @@ MOVE Node::GetMostVisitedMove()
 	int bestIndex = std::distance(this->children.begin(), best);
 
 	return this->allowedMoves[bestIndex];
+}
+
+void Node::DisplayMoveProbabilities()
+{
+	for (int i = 0; i < this->children.size(); ++i)
+	{
+		printf("%s | %d\n", this->board.MoveToString(allowedMoves[i]).c_str(), this->children[i]->GetRealPlayed());
+	}
 }
 
 int Node::GetRealPlayed()

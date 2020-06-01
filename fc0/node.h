@@ -35,6 +35,8 @@ class Node
 
 		MOVE GetMostVisitedMove();
 
+		void DisplayMoveProbabilities();
+
 		int GetRealPlayed();
 
 		Node(Board board);
