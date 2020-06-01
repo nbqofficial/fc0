@@ -105,7 +105,7 @@ void Node::Update(SIDE winner, int score)
 	}
 	if (winner == prevSide)
 	{
-		this->wins += (10 * (score / 1000));
+		this->wins += (10 * score);
 	}
 	else if (winner == SIDE_NONE)
 	{
