@@ -56,7 +56,7 @@ double Negamax::NMax(Board board, int depth, double alpha, double beta, std::vec
 
 	double score = -INF_SCORE;
 
-	if (nullMove && !inchk && searchInfo.depth != depth && depth > 1)
+	if (nullMove && !inchk && searchInfo.depth != depth && depth >= (NULL_MOVE_R + 1))
 	{
 		std::vector<MOVE> cpv;
 		board.SwitchSide();

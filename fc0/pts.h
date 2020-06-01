@@ -10,7 +10,7 @@ class PTS
 
 		double Quiescence(Board board, double alpha, double beta);
 
-		double NegaPTS(Board board, double probability, double alpha, double beta, std::vector<MOVE>& pv, bool nullMove);
+		double NegaPTS(Board board, double probability, double alpha, double beta, std::vector<MOVE>& pv);
 
 	public:
 

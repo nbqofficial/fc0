@@ -14,6 +14,8 @@ int SquareToFile64(int square);
 
 int LetterToFile(char letter);
 
+bool AreBoardsEqual(std::vector<int> b1, std::vector<int> b2);
+
 int InputWaiting();
 
 void StopEngine(bool* stopped);

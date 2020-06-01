@@ -343,7 +343,7 @@ double Board::Evaluate()
 	}
 }
 
-int Board::EvaluateMCTS()
+int Board::EvaluateNormal()
 {
 	int score = 0;
 	std::vector<MOVE> temp;
@@ -2304,7 +2304,6 @@ std::vector<double> Board::ToTensor()
 			tensor.push_back((double)this->boardState[SquareTo120(i, j)]);
 		}
 	}
-
 	return tensor;
 }
 

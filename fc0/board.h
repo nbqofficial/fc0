@@ -27,7 +27,7 @@ class Board
 
 		double Evaluate();
 
-		int EvaluateMCTS();
+		int EvaluateNormal();
 
 		void SwitchSide();
 

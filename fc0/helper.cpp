@@ -83,6 +83,18 @@ int LetterToFile(char letter)
 	return file;
 }
 
+bool AreBoardsEqual(std::vector<int> b1, std::vector<int> b2)
+{
+	for (int i = 0; i < b1.size(); ++i)
+	{
+		if (b1[i] != b2[i])
+		{
+			return false; // not equal
+		}
+	}
+	return true;
+}
+
 int InputWaiting()
 {
 	static int init = 0, pipe;
