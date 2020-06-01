@@ -1,5 +1,4 @@
 #include "chess.h"
-#include "mcts.h"
 
 Chess::Chess()
 {

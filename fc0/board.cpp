@@ -346,11 +346,49 @@ double Board::Evaluate()
 int Board::EvaluateMCTS()
 {
 	int score = 0;
+	std::vector<MOVE> temp;
+
 	for (int i = 0; i < 8; ++i)
 	{
 		for (int j = 0; j < 8; ++j)
 		{
-			score += this->boardState[SquareTo120(i, j)];
+			int sq = SquareTo120(i, j);
+			int pc = this->boardState[sq];
+			score += (pc * 1000);
+			switch (pc)
+			{
+				case WHITE_KNIGHT:
+					GenKnightMoves(temp, i, j, SIDE_WHITE, GEN_QUIET);
+					score += temp.size();
+					temp.clear();
+					break;
+				case WHITE_BISHOP:
+					GenBishopMoves(temp, i, j, SIDE_WHITE, GEN_QUIET);
+					score += temp.size();
+					temp.clear();
+					break;
+				case WHITE_ROOK:
+					GenRookMoves(temp, i, j, SIDE_WHITE, GEN_QUIET);
+					score += temp.size();
+					temp.clear();
+					break;
+
+				case BLACK_KNIGHT:
+					GenKnightMoves(temp, i, j, SIDE_BLACK, GEN_QUIET);
+					score -= temp.size();
+					temp.clear();
+					break;
+				case BLACK_BISHOP:
+					GenBishopMoves(temp, i, j, SIDE_BLACK, GEN_QUIET);
+					score -= temp.size();
+					temp.clear();
+					break;
+				case BLACK_ROOK:
+					GenRookMoves(temp, i, j, SIDE_BLACK, GEN_QUIET);
+					score -= temp.size();
+					temp.clear();
+					break;
+			}
 		}
 	}
 	return score;

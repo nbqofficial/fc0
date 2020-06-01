@@ -142,9 +142,7 @@
     <ClCompile Include="board.cpp" />
     <ClCompile Include="chess.cpp" />
     <ClCompile Include="helper.cpp" />
-    <ClCompile Include="mcts.cpp" />
     <ClCompile Include="negamax.cpp" />
-    <ClCompile Include="node.cpp" />
     <ClCompile Include="perft.cpp" />
     <ClCompile Include="pts.cpp" />
     <ClCompile Include="search.cpp" />
@@ -162,10 +160,8 @@
     <ClInclude Include="json.hpp" />
     <ClInclude Include="layer.h" />
     <ClInclude Include="matrix.h" />
-    <ClInclude Include="mcts.h" />
     <ClInclude Include="negamax.h" />
     <ClInclude Include="neuron.h" />
-    <ClInclude Include="node.h" />
     <ClInclude Include="perft.h" />
     <ClInclude Include="pts.h" />
     <ClInclude Include="search.h" />
