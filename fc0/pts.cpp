@@ -14,7 +14,7 @@ double PTS::Quiescence(Board board, double alpha, double beta)
 
 	Board b = board;
 	std::vector<MOVE> moves;
-	board.GenerateMoves(&moves, GEN_VIOLENT, false);
+	board.GenerateMoves(moves, GEN_VIOLENT, false);
 	int movesSize = moves.size();
 
 	score = -INF_SCORE;
@@ -69,7 +69,7 @@ double PTS::NegaPTS(Board board, double probability, double alpha, double beta, 
 
 	Board b = board;
 	std::vector<MOVE> moves;
-	board.GenerateMoves(&moves, GEN_ALL, true);
+	board.GenerateMoves(moves, GEN_ALL, true);
 	int movesSize = moves.size();
 
 	if (movesSize == 0)

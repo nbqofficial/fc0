@@ -10,7 +10,7 @@ void Perft::LeafNodeCheck(Board board, int depth)
 
 	Board b = board;
 	std::vector<MOVE> moves;
-	board.GenerateMoves(&moves, GEN_ALL, true);
+	board.GenerateMoves(moves, GEN_ALL, true);
 	int movesSize = moves.size();
 
 	for (int i = 0; i < movesSize; i++)
@@ -29,7 +29,7 @@ void Perft::MoveGenSpeedCheck(Board board)
 	auto startTime = std::chrono::high_resolution_clock::now();
 
 	std::vector<MOVE> moves;
-	board.GenerateMoves(&moves, GEN_ALL, true);
+	board.GenerateMoves(moves, GEN_ALL, true);
 
 	auto stopTime = std::chrono::high_resolution_clock::now();
 	execTime = std::chrono::duration_cast<std::chrono::microseconds>(stopTime - startTime).count();

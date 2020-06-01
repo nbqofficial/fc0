@@ -104,7 +104,7 @@ int Node::GetRealPlayed()
 Node::Node(Board board)
 {
 	this->board = board;
-	this->board.GenerateMoves(&this->allowedMoves, GEN_ALL, false);
+	this->board.GenerateMoves(this->allowedMoves, GEN_ALL, false);
 }
 
 Node::Node(Board board, MOVE move, Node* parent)
@@ -112,7 +112,7 @@ Node::Node(Board board, MOVE move, Node* parent)
 	this->board = board;
 	this->parent = parent;
 	this->board.MakeMove(move);
-	this->board.GenerateMoves(&this->allowedMoves, GEN_ALL, false);
+	this->board.GenerateMoves(this->allowedMoves, GEN_ALL, false);
 }
 
 Node::~Node()

@@ -300,33 +300,33 @@ double Board::Evaluate()
 			switch (pc)
 			{
 				case WHITE_KNIGHT:
-					GenKnightMoves(&temp, i, j, SIDE_WHITE, GEN_QUIET);
+					GenKnightMoves(temp, i, j, SIDE_WHITE, GEN_QUIET);
 					score += (double)temp.size();
 					temp.clear();
 					break;
 				case WHITE_BISHOP:
-					GenBishopMoves(&temp, i, j, SIDE_WHITE, GEN_QUIET);
+					GenBishopMoves(temp, i, j, SIDE_WHITE, GEN_QUIET);
 					score += (double)temp.size();
 					temp.clear();
 					break;
 				case WHITE_ROOK:
-					GenRookMoves(&temp, i, j, SIDE_WHITE, GEN_QUIET);
+					GenRookMoves(temp, i, j, SIDE_WHITE, GEN_QUIET);
 					score += (double)temp.size();
 					temp.clear();
 					break;
 
 				case BLACK_KNIGHT:
-					GenKnightMoves(&temp, i, j, SIDE_BLACK, GEN_QUIET);
+					GenKnightMoves(temp, i, j, SIDE_BLACK, GEN_QUIET);
 					score -= (double)temp.size();
 					temp.clear();
 					break;
 				case BLACK_BISHOP:
-					GenBishopMoves(&temp, i, j, SIDE_BLACK, GEN_QUIET);
+					GenBishopMoves(temp, i, j, SIDE_BLACK, GEN_QUIET);
 					score -= (double)temp.size();
 					temp.clear();
 					break;
 				case BLACK_ROOK:
-					GenRookMoves(&temp, i, j, SIDE_BLACK, GEN_QUIET);
+					GenRookMoves(temp, i, j, SIDE_BLACK, GEN_QUIET);
 					score -= (double)temp.size();
 					temp.clear();
 					break;
@@ -564,7 +564,7 @@ std::vector<MOVE> Board::ExtractLegalMoves(std::vector<MOVE> moves)
 	return legalMoves;
 }
 
-void Board::GenPawnMoves(std::vector<MOVE>* moves, int rank, int file, SIDE side, MOVEGEN_TYPE type)
+void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side, MOVEGEN_TYPE type)
 {
 	std::vector<MOVE> violent;
 	std::vector<MOVE> quiet;
@@ -980,20 +980,20 @@ void Board::GenPawnMoves(std::vector<MOVE>* moves, int rank, int file, SIDE side
 
 	if (type == GEN_VIOLENT)
 	{
-		*moves = violent;
+		moves = violent;
 	}
 	else if (type == GEN_QUIET)
 	{
-		*moves = quiet;
+		moves = quiet;
 	}
 	else // all
 	{
-		*moves = violent;
-		moves->insert(moves->end(), quiet.begin(), quiet.end());
+		moves = violent;
+		moves.insert(moves.end(), quiet.begin(), quiet.end());
 	}
 }
 
-void Board::GenKnightMoves(std::vector<MOVE>* moves, int rank, int file, SIDE side, MOVEGEN_TYPE type)
+void Board::GenKnightMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side, MOVEGEN_TYPE type)
 {
 	std::vector<MOVE> violent;
 	std::vector<MOVE> quiet;
@@ -1094,20 +1094,20 @@ void Board::GenKnightMoves(std::vector<MOVE>* moves, int rank, int file, SIDE si
 
 	if (type == GEN_VIOLENT)
 	{
-		*moves = violent;
+		moves = violent;
 	}
 	else if (type == GEN_QUIET)
 	{
-		*moves = quiet;
+		moves = quiet;
 	}
 	else // all
 	{
-		*moves = violent;
-		moves->insert(moves->end(), quiet.begin(), quiet.end());
+		moves = violent;
+		moves.insert(moves.end(), quiet.begin(), quiet.end());
 	}
 }
 
-void Board::GenBishopMoves(std::vector<MOVE>* moves, int rank, int file, SIDE side, MOVEGEN_TYPE type)
+void Board::GenBishopMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side, MOVEGEN_TYPE type)
 {
 	std::vector<MOVE> violent;
 	std::vector<MOVE> quiet;
@@ -1230,20 +1230,20 @@ void Board::GenBishopMoves(std::vector<MOVE>* moves, int rank, int file, SIDE si
 
 	if (type == GEN_VIOLENT)
 	{
-		*moves = violent;
+		moves = violent;
 	}
 	else if (type == GEN_QUIET)
 	{
-		*moves = quiet;
+		moves = quiet;
 	}
 	else // all
 	{
-		*moves = violent;
-		moves->insert(moves->end(), quiet.begin(), quiet.end());
+		moves = violent;
+		moves.insert(moves.end(), quiet.begin(), quiet.end());
 	}
 }
 
-void Board::GenRookMoves(std::vector<MOVE>* moves, int rank, int file, SIDE side, MOVEGEN_TYPE type)
+void Board::GenRookMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side, MOVEGEN_TYPE type)
 {
 	std::vector<MOVE> violent;
 	std::vector<MOVE> quiet;
@@ -1366,20 +1366,20 @@ void Board::GenRookMoves(std::vector<MOVE>* moves, int rank, int file, SIDE side
 
 	if (type == GEN_VIOLENT)
 	{
-		*moves = violent;
+		moves = violent;
 	}
 	else if (type == GEN_QUIET)
 	{
-		*moves = quiet;
+		moves = quiet;
 	}
 	else // all
 	{
-		*moves = violent;
-		moves->insert(moves->end(), quiet.begin(), quiet.end());
+		moves = violent;
+		moves.insert(moves.end(), quiet.begin(), quiet.end());
 	}
 }
 
-void Board::GenQueenMoves(std::vector<MOVE>* moves, int rank, int file, SIDE side, MOVEGEN_TYPE type)
+void Board::GenQueenMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side, MOVEGEN_TYPE type)
 {
 	std::vector<MOVE> violent;
 	std::vector<MOVE> quiet;
@@ -1608,20 +1608,20 @@ void Board::GenQueenMoves(std::vector<MOVE>* moves, int rank, int file, SIDE sid
 
 	if (type == GEN_VIOLENT)
 	{
-		*moves = violent;
+		moves = violent;
 	}
 	else if (type == GEN_QUIET)
 	{
-		*moves = quiet;
+		moves = quiet;
 	}
 	else // all
 	{
-		*moves = violent;
-		moves->insert(moves->end(), quiet.begin(), quiet.end());
+		moves = violent;
+		moves.insert(moves.end(), quiet.begin(), quiet.end());
 	}
 }
 
-void Board::GenKingMoves(std::vector<MOVE>* moves, int rank, int file, SIDE side, MOVEGEN_TYPE type)
+void Board::GenKingMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side, MOVEGEN_TYPE type)
 {
 	std::vector<MOVE> violent;
 	std::vector<MOVE> quiet;
@@ -1782,20 +1782,20 @@ void Board::GenKingMoves(std::vector<MOVE>* moves, int rank, int file, SIDE side
 
 	if (type == GEN_VIOLENT)
 	{
-		*moves = violent;
+		moves = violent;
 	}
 	else if (type == GEN_QUIET)
 	{
-		*moves = quiet;
+		moves = quiet;
 	}
 	else // all
 	{
-		*moves = violent;
-		moves->insert(moves->end(), quiet.begin(), quiet.end());
+		moves = violent;
+		moves.insert(moves.end(), quiet.begin(), quiet.end());
 	}
 }
 
-void Board::GenerateMoves(std::vector<MOVE>* moves, MOVEGEN_TYPE type, bool sort)
+void Board::GenerateMoves(std::vector<MOVE>& moves, MOVEGEN_TYPE type, bool sort)
 {
 	std::vector<MOVE> temp;
 
@@ -1808,50 +1808,50 @@ void Board::GenerateMoves(std::vector<MOVE>* moves, MOVEGEN_TYPE type, bool sort
 				switch (this->boardState[SquareTo120(r, f)])
 				{
 					case WHITE_KING:
-						GenKingMoves(&temp, r, f, SIDE_WHITE, type);
+						GenKingMoves(temp, r, f, SIDE_WHITE, type);
 						if (temp.size() > 0)
 						{
-							moves->insert(moves->end(), temp.begin(), temp.end());
+							moves.insert(moves.end(), temp.begin(), temp.end());
 							temp.clear();
 						}
 						break;
 					case WHITE_PAWN:
-						GenPawnMoves(&temp, r, f, SIDE_WHITE, type);
+						GenPawnMoves(temp, r, f, SIDE_WHITE, type);
 						if (temp.size() > 0)
 						{
-							moves->insert(moves->end(), temp.begin(), temp.end());
+							moves.insert(moves.end(), temp.begin(), temp.end());
 							temp.clear();
 						}
 						break;
 					case WHITE_KNIGHT:
-						GenKnightMoves(&temp, r, f, SIDE_WHITE, type);
+						GenKnightMoves(temp, r, f, SIDE_WHITE, type);
 						if (temp.size() > 0)
 						{
-							moves->insert(moves->end(), temp.begin(), temp.end());
+							moves.insert(moves.end(), temp.begin(), temp.end());
 							temp.clear();
 						}
 						break;
 					case WHITE_BISHOP:
-						GenBishopMoves(&temp, r, f, SIDE_WHITE, type);
+						GenBishopMoves(temp, r, f, SIDE_WHITE, type);
 						if (temp.size() > 0)
 						{
-							moves->insert(moves->end(), temp.begin(), temp.end());
+							moves.insert(moves.end(), temp.begin(), temp.end());
 							temp.clear();
 						}
 						break;
 					case WHITE_ROOK:
-						GenRookMoves(&temp, r, f, SIDE_WHITE, type);
+						GenRookMoves(temp, r, f, SIDE_WHITE, type);
 						if (temp.size() > 0)
 						{
-							moves->insert(moves->end(), temp.begin(), temp.end());
+							moves.insert(moves.end(), temp.begin(), temp.end());
 							temp.clear();
 						}
 						break;
 					case WHITE_QUEEN:
-						GenQueenMoves(&temp, r, f, SIDE_WHITE, type);
+						GenQueenMoves(temp, r, f, SIDE_WHITE, type);
 						if (temp.size() > 0)
 						{
-							moves->insert(moves->end(), temp.begin(), temp.end());
+							moves.insert(moves.end(), temp.begin(), temp.end());
 							temp.clear();
 						}
 						break;
@@ -1862,50 +1862,50 @@ void Board::GenerateMoves(std::vector<MOVE>* moves, MOVEGEN_TYPE type, bool sort
 				switch (this->boardState[SquareTo120(r, f)])
 				{
 					case BLACK_KING:
-						GenKingMoves(&temp, r, f, SIDE_BLACK, type);
+						GenKingMoves(temp, r, f, SIDE_BLACK, type);
 						if (temp.size() > 0)
 						{
-							moves->insert(moves->end(), temp.begin(), temp.end());
+							moves.insert(moves.end(), temp.begin(), temp.end());
 							temp.clear();
 						}
 						break;
 					case BLACK_PAWN:
-						GenPawnMoves(&temp, r, f, SIDE_BLACK, type);
+						GenPawnMoves(temp, r, f, SIDE_BLACK, type);
 						if (temp.size() > 0)
 						{
-							moves->insert(moves->end(), temp.begin(), temp.end());
+							moves.insert(moves.end(), temp.begin(), temp.end());
 							temp.clear();
 						}
 						break;
 					case BLACK_KNIGHT:
-						GenKnightMoves(&temp, r, f, SIDE_BLACK, type);
+						GenKnightMoves(temp, r, f, SIDE_BLACK, type);
 						if (temp.size() > 0)
 						{
-							moves->insert(moves->end(), temp.begin(), temp.end());
+							moves.insert(moves.end(), temp.begin(), temp.end());
 							temp.clear();
 						}
 						break;
 					case BLACK_BISHOP:
-						GenBishopMoves(&temp, r, f, SIDE_BLACK, type);
+						GenBishopMoves(temp, r, f, SIDE_BLACK, type);
 						if (temp.size() > 0)
 						{
-							moves->insert(moves->end(), temp.begin(), temp.end());
+							moves.insert(moves.end(), temp.begin(), temp.end());
 							temp.clear();
 						}
 						break;
 					case BLACK_ROOK:
-						GenRookMoves(&temp, r, f, SIDE_BLACK, type);
+						GenRookMoves(temp, r, f, SIDE_BLACK, type);
 						if (temp.size() > 0)
 						{
-							moves->insert(moves->end(), temp.begin(), temp.end());
+							moves.insert(moves.end(), temp.begin(), temp.end());
 							temp.clear();
 						}
 						break;
 					case BLACK_QUEEN:
-						GenQueenMoves(&temp, r, f, SIDE_BLACK, type);
+						GenQueenMoves(temp, r, f, SIDE_BLACK, type);
 						if (temp.size() > 0)
 						{
-							moves->insert(moves->end(), temp.begin(), temp.end());
+							moves.insert(moves.end(), temp.begin(), temp.end());
 							temp.clear();
 						}
 						break;
@@ -1916,10 +1916,10 @@ void Board::GenerateMoves(std::vector<MOVE>* moves, MOVEGEN_TYPE type, bool sort
 
 	if (sort)
 	{
-		std::sort(moves->begin(), moves->end(), [](const MOVE& a, const MOVE& b) { return a.score > b.score; });
+		std::sort(moves.begin(), moves.end(), [](const MOVE& a, const MOVE& b) { return a.score > b.score; });
 	}
 
-	*moves = ExtractLegalMoves(*moves);
+	moves = ExtractLegalMoves(moves);
 }
 
 MOVE Board::StringToMove(std::string moveStr)

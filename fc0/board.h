@@ -39,19 +39,19 @@ class Board
 
 		std::vector<MOVE> ExtractLegalMoves(std::vector<MOVE> moves);
 
-		void GenPawnMoves(std::vector<MOVE>* moves, int rank, int file, SIDE side, MOVEGEN_TYPE type);
+		void GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side, MOVEGEN_TYPE type);
 
-		void GenKnightMoves(std::vector<MOVE>* moves, int rank, int file, SIDE side, MOVEGEN_TYPE type);
+		void GenKnightMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side, MOVEGEN_TYPE type);
 
-		void GenBishopMoves(std::vector<MOVE>* moves, int rank, int file, SIDE side, MOVEGEN_TYPE type);
+		void GenBishopMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side, MOVEGEN_TYPE type);
 
-		void GenRookMoves(std::vector<MOVE>* moves, int rank, int file, SIDE side, MOVEGEN_TYPE type);
+		void GenRookMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side, MOVEGEN_TYPE type);
 
-		void GenQueenMoves(std::vector<MOVE>* moves, int rank, int file, SIDE side, MOVEGEN_TYPE type);
+		void GenQueenMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side, MOVEGEN_TYPE type);
 
-		void GenKingMoves(std::vector<MOVE>* moves, int rank, int file, SIDE side, MOVEGEN_TYPE type);
+		void GenKingMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side, MOVEGEN_TYPE type);
 
-		void GenerateMoves(std::vector<MOVE>* moves, MOVEGEN_TYPE type, bool sort);
+		void GenerateMoves(std::vector<MOVE>& moves, MOVEGEN_TYPE type, bool sort);
 
 		MOVE StringToMove(std::string moveStr);
 
