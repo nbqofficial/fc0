@@ -42,7 +42,7 @@ double PTS::Quiescence(Board board, double alpha, double beta)
 	return alpha;
 }
 
-double PTS::NegaPTS(Board board, double probability, double alpha, double beta, std::vector<MOVE>& pv)
+double PTS::NegaPTS(Board board, double probability, double alpha, double beta, std::vector<MOVE>& pv, bool nullMove)
 {
 	if (probability < PROBABILITY_LIMIT) { return Quiescence(board, alpha, beta); }
 
@@ -51,6 +51,21 @@ double PTS::NegaPTS(Board board, double probability, double alpha, double beta, 
 	bool inchk = board.IsInCheck(board.GetSide());
 
 	double score = -INF_SCORE;
+
+	if (nullMove && !inchk && searchInfo.probability != probability && probability >= (pow(10.0, (NULL_MOVE_R + 1))))
+	{
+		std::vector<MOVE> cpv;
+		board.SwitchSide();
+		score = -NegaPTS(board, (probability / pow(10.0, (NULL_MOVE_R + 1))), -beta, -beta + 1, cpv, false);
+		board.SwitchSide();
+		if (score >= beta && abs(alpha) < (MATE_SCORE - MAX_DEPTH))
+		{
+			searchInfo.nullCutoff++;
+			return beta;
+		}
+	}
+
+	score = -INF_SCORE;
 
 	Board b = board;
 	std::vector<MOVE> moves;
@@ -73,7 +88,7 @@ double PTS::NegaPTS(Board board, double probability, double alpha, double beta, 
 	{
 		std::vector<MOVE> childpv;
 		board.MakeMove(moves[i]); // make move
-		score = -NegaPTS(board, (probability / movesSize), -beta, -alpha, childpv);
+		score = -NegaPTS(board, (probability / movesSize), -beta, -alpha, childpv, true);
 		board = b; // take back move
 
 		if (searchInfo.stopped)
@@ -110,7 +125,7 @@ MOVE PTS::Go(Board board, double probability)
 	for (double currProb = (PROBABILITY_LIMIT * 10); currProb <= probability; currProb*=10)
 	{
 		std::vector<MOVE> newpv;
-		bestScore = NegaPTS(board, currProb, -INF_SCORE, INF_SCORE, newpv);
+		bestScore = NegaPTS(board, currProb, -INF_SCORE, INF_SCORE, newpv, true);
 		if (searchInfo.stopped)
 		{
 			break;
