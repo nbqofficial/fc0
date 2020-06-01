@@ -43,6 +43,9 @@
     <Filter Include="Header Files\Search\Negamax">
       <UniqueIdentifier>{29e3260d-67dc-44ed-a5ae-d7934fde50bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Search\MonteCarlo">
+      <UniqueIdentifier>{e6ec8392-dd6b-4148-b87c-244fdb2f0c2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">

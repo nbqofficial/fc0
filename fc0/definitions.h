@@ -11,7 +11,7 @@
 
 // defines
 #define ENGINE_NAME "fc0"
-#define ENGINE_VERSION "55"
+#define ENGINE_VERSION "56"
 #define ENGINE_AUTHOR "nbqofficial"
 
 #define WHITE_PAWN 1

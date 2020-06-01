@@ -72,7 +72,7 @@ void UCI::Go(char* lineIn)
 		searchInfo.probability = MAX_PROBABILITY;
 	}
 
-	MOVE bestMove = search.SearchPosition(board, searchInfo.depth, searchInfo.probability, METHOD_NEGAMAX);
+	MOVE bestMove = search.SearchPosition(board, searchInfo.depth, searchInfo.probability, METHOD_PTS);
 	std::string moveStr = board.MoveToString(bestMove);
 	board.MakeMove(bestMove);
 

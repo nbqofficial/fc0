@@ -27,7 +27,11 @@ class Board
 
 		double Evaluate();
 
-		int EvaluateNormal();
+		int EvaluateInt();
+
+		int EvaluateMaterial();
+
+		int EvaluateMobility();
 
 		void SwitchSide();
 

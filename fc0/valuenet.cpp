@@ -12,7 +12,7 @@ double ValueNet::GetError()
 
 ValueNet::ValueNet()
 {
-	this->vn.Setup("value.json");
+	//this->vn.Setup("value.json");
 }
 
 ValueNet::~ValueNet()

@@ -343,7 +343,7 @@ double Board::Evaluate()
 	}
 }
 
-int Board::EvaluateNormal()
+int Board::EvaluateInt()
 {
 	int score = 0;
 	std::vector<MOVE> temp;
@@ -356,6 +356,70 @@ int Board::EvaluateNormal()
 			int pc = this->boardState[sq];
 			score += (pc * 1000);
 			switch (pc)
+			{
+				case WHITE_KNIGHT:
+					GenKnightMoves(temp, i, j, SIDE_WHITE, GEN_QUIET);
+					score += temp.size();
+					temp.clear();
+					break;
+				case WHITE_BISHOP:
+					GenBishopMoves(temp, i, j, SIDE_WHITE, GEN_QUIET);
+					score += temp.size();
+					temp.clear();
+					break;
+				case WHITE_ROOK:
+					GenRookMoves(temp, i, j, SIDE_WHITE, GEN_QUIET);
+					score += temp.size();
+					temp.clear();
+					break;
+
+				case BLACK_KNIGHT:
+					GenKnightMoves(temp, i, j, SIDE_BLACK, GEN_QUIET);
+					score -= temp.size();
+					temp.clear();
+					break;
+				case BLACK_BISHOP:
+					GenBishopMoves(temp, i, j, SIDE_BLACK, GEN_QUIET);
+					score -= temp.size();
+					temp.clear();
+					break;
+				case BLACK_ROOK:
+					GenRookMoves(temp, i, j, SIDE_BLACK, GEN_QUIET);
+					score -= temp.size();
+					temp.clear();
+					break;
+			}
+		}
+	}
+	return score;
+}
+
+int Board::EvaluateMaterial()
+{
+	int score = 0;
+	std::vector<MOVE> temp;
+
+	for (int i = 0; i < 8; ++i)
+	{
+		for (int j = 0; j < 8; ++j)
+		{
+			int pc = this->boardState[SquareTo120(i, j)];
+			score += (pc * 1000);
+		}
+	}
+	return score;
+}
+
+int Board::EvaluateMobility()
+{
+	int score = 0;
+	std::vector<MOVE> temp;
+
+	for (int i = 0; i < 8; ++i)
+	{
+		for (int j = 0; j < 8; ++j)
+		{
+			switch (this->boardState[SquareTo120(i, j)])
 			{
 				case WHITE_KNIGHT:
 					GenKnightMoves(temp, i, j, SIDE_WHITE, GEN_QUIET);
@@ -2295,15 +2359,28 @@ void Board::DisplayPv(std::vector<MOVE> pv)
 
 std::vector<double> Board::ToTensor()
 {
-	std::vector<double> tensor;
+	double wm = 0.0; // white material
+	double bm = 0.0; // black material
 
 	for (int i = 0; i < 8; ++i)
 	{
 		for (int j = 0; j < 8; ++j)
 		{
-			tensor.push_back((double)this->boardState[SquareTo120(i, j)]);
+			int pc = this->boardState[SquareTo120(i, j)];
+			if (pc > 0) // white piece
+			{
+				wm += pc;
+			}
+			else // black piece
+			{
+				bm += pc;
+			}
 		}
 	}
+	std::vector<double> tensor;
+	tensor.push_back(wm);
+	tensor.push_back(bm);
+
 	return tensor;
 }
 
