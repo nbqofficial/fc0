@@ -81,6 +81,12 @@
     <ClCompile Include="pts.cpp">
       <Filter>Header Files\Search\PTS</Filter>
     </ClCompile>
+    <ClCompile Include="node.cpp">
+      <Filter>Header Files\Search\MonteCarlo</Filter>
+    </ClCompile>
+    <ClCompile Include="mcts.cpp">
+      <Filter>Header Files\Search\MonteCarlo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="board.h">
@@ -130,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="pts.h">
       <Filter>Header Files\Search\PTS</Filter>
+    </ClInclude>
+    <ClInclude Include="node.h">
+      <Filter>Header Files\Search\MonteCarlo</Filter>
+    </ClInclude>
+    <ClInclude Include="mcts.h">
+      <Filter>Header Files\Search\MonteCarlo</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

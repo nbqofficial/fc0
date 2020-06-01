@@ -2,6 +2,7 @@
 
 #include "negamax.h"
 #include "pts.h"
+#include "mcts.h"
 
 class Search
 {
@@ -9,6 +10,7 @@ class Search
 
 		Negamax negamax;
 		PTS pts;
+		MCTS mcts;
 
 	public:
 

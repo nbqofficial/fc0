@@ -3,7 +3,6 @@
 MOVE Search::SearchPosition(Board board, int depth, double probability, SEARCH_METHOD method)
 {
 	MOVE m = { 0 };
-
 	switch (method)
 	{
 		case METHOD_NEGAMAX:
@@ -11,6 +10,9 @@ MOVE Search::SearchPosition(Board board, int depth, double probability, SEARCH_M
 			break;
 		case METHOD_PTS:
 			m = this->pts.Go(board, probability);
+			break;
+		case METHOD_MCTS:
+			m = this->mcts.Go(board, MCTS_DEPTH);
 			break;
 		default:
 			m = this->negamax.Go(board, depth);

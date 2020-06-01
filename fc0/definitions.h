@@ -11,7 +11,7 @@
 
 // defines
 #define ENGINE_NAME "fc0"
-#define ENGINE_VERSION "56"
+#define ENGINE_VERSION "58"
 #define ENGINE_AUTHOR "nbqofficial"
 
 #define WHITE_PAWN 1
@@ -45,6 +45,9 @@
 #define PROBABILITY_LIMIT 0.0000001
 
 #define NULL_MOVE_R 2
+
+#define MCTS_WIN_FACTOR 100
+#define MCTS_DEPTH 10
 
 #define START_FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 #define WAC1 "2rr3k/pp3pp1/1nnqbN1p/3pN3/2pP4/2P3Q1/PPB4P/R4RK1 w - - 0 1" // Qg6
@@ -119,13 +122,13 @@ typedef struct _SEARCHINFO
 // enums
 enum SIDE { SIDE_WHITE, SIDE_BLACK, SIDE_NONE };
 
-enum SEARCH_METHOD { METHOD_NEGAMAX, METHOD_PTS };
+enum SEARCH_METHOD { METHOD_NEGAMAX, METHOD_PTS, METHOD_MCTS };
 
 enum MOVEGEN_TYPE { GEN_ALL, GEN_VIOLENT, GEN_QUIET };
 
 // consts
-const double INF_SCORE = 90000.0;
-const double MATE_SCORE = 30000.0;
+const double INF_SCORE = 900000.0;
+const double MATE_SCORE = 300000.0;
 
 const int KnightDir[8] = { -8, -19, -21, -12, 8, 19, 21, 12 };
 const int RookDir[4] = { -1, -10, 1, 10 };
