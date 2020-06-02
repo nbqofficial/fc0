@@ -71,7 +71,7 @@ SIDE Node::Simulate(int depth, int& sc)
 				return SIDE_NONE;
 			}
 		}
-		std::random_shuffle(moves.begin(), moves.end());
+		std::random_shuffle(moves.begin(), moves.end(), RandomFunc);
 		temp.MakeMove(moves[0]);
 	}
 

@@ -43,7 +43,7 @@ MOVE MCTS::Go(Board board, int depth)
 		CheckUp();
 	}
 	//printf("Iterations: %ld\n", this->iteration);
-	this->root->DisplayMoveProbabilities();
+	//this->root->DisplayMoveProbabilities();
 	MOVE bestMove = root->GetBestRatioMove();
 	ClearSearchInfo();
 	this->iteration = 0;

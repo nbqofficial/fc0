@@ -95,6 +95,11 @@ bool AreBoardsEqual(std::vector<int> b1, std::vector<int> b2)
 	return true;
 }
 
+int RandomFunc(int j)
+{
+	return rand() % j;
+}
+
 int InputWaiting()
 {
 	static int init = 0, pipe;

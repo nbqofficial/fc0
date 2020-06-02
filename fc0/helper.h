@@ -16,6 +16,8 @@ int LetterToFile(char letter);
 
 bool AreBoardsEqual(std::vector<int> b1, std::vector<int> b2);
 
+int RandomFunc(int j);
+
 int InputWaiting();
 
 void StopEngine(bool* stopped);

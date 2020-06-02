@@ -296,7 +296,7 @@ double Board::Evaluate()
 		{
 			int sq = SquareTo120(i, j);
 			int pc = this->boardState[sq];
-			score += (double)(pc * 1000);
+			score += (double)(pc * 100);
 			switch (pc)
 			{
 				case WHITE_KNIGHT:
@@ -354,7 +354,7 @@ int Board::EvaluateInt()
 		{
 			int sq = SquareTo120(i, j);
 			int pc = this->boardState[sq];
-			score += (pc * 1000);
+			score += (pc * 100);
 			switch (pc)
 			{
 				case WHITE_KNIGHT:
@@ -404,7 +404,7 @@ int Board::EvaluateMaterial()
 		for (int j = 0; j < 8; ++j)
 		{
 			int pc = this->boardState[SquareTo120(i, j)];
-			score += (pc * 1000);
+			score += (pc * 100);
 		}
 	}
 	return score;

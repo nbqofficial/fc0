@@ -11,21 +11,21 @@
 
 // defines
 #define ENGINE_NAME "fc0"
-#define ENGINE_VERSION "60"
+#define ENGINE_VERSION "61"
 #define ENGINE_AUTHOR "nbqofficial"
 
-#define WHITE_PAWN 1
-#define WHITE_KNIGHT 3
-#define WHITE_BISHOP 4
-#define WHITE_ROOK 5
-#define WHITE_QUEEN 9
-#define WHITE_KING 100
-#define BLACK_PAWN -1
-#define BLACK_KNIGHT -3
-#define BLACK_BISHOP -4
-#define BLACK_ROOK -5
-#define BLACK_QUEEN -9
-#define BLACK_KING -100
+#define WHITE_PAWN 10
+#define WHITE_KNIGHT 30
+#define WHITE_BISHOP 31
+#define WHITE_ROOK 50
+#define WHITE_QUEEN 90
+#define WHITE_KING 1000
+#define BLACK_PAWN -10
+#define BLACK_KNIGHT -30
+#define BLACK_BISHOP -31
+#define BLACK_ROOK -50
+#define BLACK_QUEEN -90
+#define BLACK_KING -1000
 #define EMPTY_SQUARE 0
 #define NONE_SQUARE 404
 
@@ -47,7 +47,7 @@
 #define NULL_MOVE_R 2
 
 #define MCTS_WIN_FACTOR 1001
-#define MCTS_DEPTH 7
+#define MCTS_DEPTH 10
 
 #define START_FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 #define WAC1 "2rr3k/pp3pp1/1nnqbN1p/3pN3/2pP4/2P3Q1/PPB4P/R4RK1 w - - 0 1" // Qg6
