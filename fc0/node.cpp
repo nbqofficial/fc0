@@ -53,15 +53,14 @@ SIDE Node::Simulate(int depth, int& sc)
 	{
 		std::vector<MOVE> moves;
 		temp.GenerateMoves(moves, GEN_ALL, false);
-		std::random_shuffle(moves.begin(), moves.end());
 		if (moves.size() == 0)
 		{
-			if (board.IsInCheck(SIDE_WHITE))
+			if (temp.IsInCheck(SIDE_WHITE))
 			{
 				sc = MATE_SCORE;
-				return SIDE_BLACK;
+				return SIDE_WHITE;
 			}
-			else if (board.IsInCheck(SIDE_BLACK))
+			else if (temp.IsInCheck(SIDE_BLACK))
 			{
 				sc = MATE_SCORE;
 				return SIDE_WHITE;
@@ -72,16 +71,14 @@ SIDE Node::Simulate(int depth, int& sc)
 				return SIDE_NONE;
 			}
 		}
-		else
-		{
-			temp.MakeMove(moves[0]);
-		}
+		std::random_shuffle(moves.begin(), moves.end());
+		temp.MakeMove(moves[0]);
 	}
 
 	int score = temp.EvaluateInt();
 	sc = abs(score);
 
-	if (abs(score) > MCTS_WIN_FACTOR)
+	if (sc > MCTS_WIN_FACTOR)
 	{
 		if (score > 0)
 		{
@@ -95,7 +92,7 @@ SIDE Node::Simulate(int depth, int& sc)
 	return SIDE_NONE;
 }
 
-void Node::Update(SIDE winner, int score)
+void Node::Update(SIDE winner, int sc)
 {
 	played += 10;
 	SIDE prevSide = SIDE_WHITE;
@@ -105,7 +102,11 @@ void Node::Update(SIDE winner, int score)
 	}
 	if (winner == prevSide)
 	{
-		this->wins += score;
+		this->wins += (5 + (sc / 1000));
+	}
+	else if (winner == SIDE_NONE)
+	{
+		this->wins += 5;
 	}
 }
 
@@ -121,17 +122,51 @@ MOVE Node::GetMostVisitedMove()
 	return this->allowedMoves[bestIndex];
 }
 
+MOVE Node::GetMostWonMove()
+{
+	auto best = std::max_element(this->children.begin(), this->children.end(),
+		[](const std::unique_ptr<Node>& left, const std::unique_ptr<Node>& right) {
+			return left->wins < right->wins;
+		});
+
+	int bestIndex = std::distance(this->children.begin(), best);
+
+	return this->allowedMoves[bestIndex];
+}
+
+MOVE Node::GetBestRatioMove()
+{
+	double bestRatio = -INF_SCORE;
+	int bestIndex = 0;
+	for (int i = 0; i < this->children.size(); ++i)
+	{
+		float p = (this->children[i]->GetRealWins() * 100.0) / this->children[i]->GetRealPlayed();	
+		if (p >= bestRatio)
+		{
+			bestRatio = p;
+			bestIndex = i;
+		}
+	}
+	return this->allowedMoves[bestIndex];
+}
+
 void Node::DisplayMoveProbabilities()
 {
 	for (int i = 0; i < this->children.size(); ++i)
 	{
-		printf("%s | %d\n", this->board.MoveToString(allowedMoves[i]).c_str(), this->children[i]->GetRealPlayed());
+		float p = (this->children[i]->GetRealWins() * 100.0) / this->children[i]->GetRealPlayed();
+		printf("%s | %.2f\n", this->board.MoveToString(allowedMoves[i]).c_str(), p);
 	}
 }
 
 int Node::GetRealPlayed()
 {
 	return this->played / 10;
+}
+
+int Node::GetRealWins()
+{
+	return this->wins / 10;
 }
 
 Node::Node(Board board)

@@ -49,6 +49,10 @@ double PTS::NegaPTS(Board board, double probability, double alpha, double beta, 
 	if ((nodes & 2047) == 0) { CheckUp(); }
 
 	bool inchk = board.IsInCheck(board.GetSide());
+	if (inchk)
+	{
+		probability *= 10;
+	}
 
 	double score = -INF_SCORE;
 

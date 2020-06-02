@@ -31,13 +31,19 @@ class Node
 
 		SIDE Simulate(int depth, int& sc);
 
-		void Update(SIDE winner, int score);
+		void Update(SIDE winner, int sc);
 
 		MOVE GetMostVisitedMove();
+
+		MOVE GetMostWonMove();
+
+		MOVE GetBestRatioMove();
 
 		void DisplayMoveProbabilities();
 
 		int GetRealPlayed();
+
+		int GetRealWins();
 
 		Node(Board board);
 
