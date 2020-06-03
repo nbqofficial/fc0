@@ -11,7 +11,7 @@
 
 // defines
 #define ENGINE_NAME "fc0"
-#define ENGINE_VERSION "62"
+#define ENGINE_VERSION "63"
 #define ENGINE_AUTHOR "nbqofficial"
 
 #define WHITE_PAWN 10
@@ -46,13 +46,13 @@
 
 #define NULL_MOVE_R 2
 
-#define MCTS_WIN_FACTOR 500
-#define MCTS_DEPTH 6
+#define MCTS_WIN_FACTOR 50
+#define MCTS_DEPTH 10
 
 #define START_FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 #define WAC1 "2rr3k/pp3pp1/1nnqbN1p/3pN3/2pP4/2P3Q1/PPB4P/R4RK1 w - - 0 1" // Qg6
-#define WAC2 "8/7p/5k2/5p2/p1p2P2/Pr1pPK2/1P1R3P/8 b - -" // Rxb2
-#define WAC3 "5rk1/1ppb3p/p1pb4/6q1/3P1p1r/2P1R2P/PP1BQ1P1/5RKN w - -" // Rg3
+#define WAC2 "8/7p/5k2/5p2/p1p2P2/Pr1pPK2/1P1R3P/8 b - -"                  // Rxb2
+#define WAC3 "5rk1/1ppb3p/p1pb4/6q1/3P1p1r/2P1R2P/PP1BQ1P1/5RKN w - -"     // Rg3
 
 // MVVLVA SCORES
 #define PxP 105
@@ -144,6 +144,39 @@ const int PawnTable[64] = {
 	10,	10,	10,	20,	20,	10,	10,	10,
 	20,	20,	20,	30,	30,	20,	20,	20,
 	0,	0,	0,	0,	0,	0,	0,	0
+};
+
+const int KnightTable[64] = {
+	0,	-10,0,	0,	0,	0,	-10,0,
+	0,	0,	0,	5,	5,	0,	0,	0,
+	0,	0,	10,	10,	10,	10,	0,	0,
+	0,	0,	10,	20,	20,	10,	5,	0,
+	5,	10,	15,	20,	20,	15,	10,	5,
+	5,	10,	10,	20,	20,	10,	10,	5,
+	0,	0,	5,	10,	10,	5,	0,	0,
+	0,	0,	0,	0,	0,	0,	0,	0
+};
+
+const int BishopTable[64] = {
+	0,	0,	-10,0,	0,	-10,0,	0,
+	0,	0,	0,	10,	10,	0,	0,	0,
+	0,	0,	10,	15,	15,	10,	0,	0,
+	0,	10,	15,	20,	20,	15,	10,	0,
+	0,	10,	15,	20,	20,	15,	10,	0,
+	0,	0,	10,	15,	15,	10,	0,	0,
+	0,	0,	0,	10,	10,	0,	0,	0,
+	0,	0,	0,	0,	0,	0,	0,	0
+};
+
+const int RookTable[64] = {
+	0,	0,	5,	10,	10,	5,	0,	0,
+	0,	0,	5,	10,	10,	5,	0,	0,
+	0,	0,	5,	10,	10,	5,	0,	0,
+	0,	0,	5,	10,	10,	5,	0,	0,
+	0,	0,	5,	10,	10,	5,	0,	0,
+	0,	0,	5,	10,	10,	5,	0,	0,
+	25,	25,	25,	25,	25,	25,	25,	25,
+	0,	0,	5,	10,	10,	5,	0,	0
 };
 
 const int Mirror64[64] = {

@@ -45,9 +45,9 @@ Node* Node::Expand()
 	return this->children.back().get();
 }
 
-SIDE Node::Simulate(int depth)
+SIDE Node::Simulate(int depth, int& sc)
 {
-	int baseScore = this->board.EvaluateInt();
+	int baseScore = this->board.EvaluatePSQT();
 
 	Board temp = this->board;
 
@@ -59,14 +59,17 @@ SIDE Node::Simulate(int depth)
 		{
 			if (temp.IsInCheck(SIDE_WHITE))
 			{
+				sc = 20000;
 				return SIDE_BLACK;
 			}
 			else if (temp.IsInCheck(SIDE_BLACK))
 			{
+				sc = 20000;
 				return SIDE_WHITE;
 			}
 			else
 			{
+				sc = 0;
 				return SIDE_NONE;
 			}
 		}
@@ -74,9 +77,10 @@ SIDE Node::Simulate(int depth)
 		temp.MakeMove(moves[0]);
 	}
 
-	int score = temp.EvaluateInt();
+	int score = temp.EvaluatePSQT();
+	sc = abs(score);
 
-	if (abs(score) > (abs(baseScore) + MCTS_WIN_FACTOR))
+	if (sc > (abs(baseScore) + MCTS_WIN_FACTOR))
 	{
 		if (score > 0)
 		{
@@ -90,7 +94,7 @@ SIDE Node::Simulate(int depth)
 	return SIDE_NONE;
 }
 
-void Node::Update(SIDE winner)
+void Node::Update(SIDE winner, int sc)
 {
 	played += 10;
 	SIDE prevSide = SIDE_WHITE;
@@ -100,7 +104,7 @@ void Node::Update(SIDE winner)
 	}
 	if (winner == prevSide)
 	{
-		this->wins += 10;
+		this->wins += (10 + (sc / 1000));
 	}
 	else if (winner == SIDE_NONE)
 	{

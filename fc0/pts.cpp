@@ -116,7 +116,7 @@ MOVE PTS::Go(Board board, double probability)
 			break;
 		}
 		bestMove = newpv[0];
-		//printf("info score cp %d depth %f nodes %ld ", (int)bestScore, currProb, this->nodes);
+		//printf("info score cp %d depth %f nodes %ld\n", (int)bestScore, currProb, this->nodes);
 		//printf("info nodes %ld\n", this->nodes);
 		//board.DisplayPv(newpv);
 		//printf("Move ordering: %.2f\n", (searchInfo.fhf / searchInfo.fh));

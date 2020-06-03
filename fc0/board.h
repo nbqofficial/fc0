@@ -29,6 +29,8 @@ class Board
 
 		int EvaluateInt();
 
+		int EvaluatePSQT();
+
 		void SwitchSide();
 
 		SIDE GetSide();

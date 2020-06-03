@@ -29,9 +29,9 @@ class Node
 
 		Node* Expand();
 
-		SIDE Simulate(int depth);
+		SIDE Simulate(int depth, int& sc);
 
-		void Update(SIDE winner);
+		void Update(SIDE winner, int sc);
 
 		MOVE GetMostVisitedMove();
 

@@ -14,7 +14,7 @@ class MCTS
 
 		Node* Expand(Node* node);
 
-		void BackPropagate(Node* node, SIDE winner);
+		void BackPropagate(Node* node, SIDE winner, int sc);
 
 	public:
 

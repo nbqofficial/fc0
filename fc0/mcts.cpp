@@ -17,13 +17,13 @@ Node* MCTS::Expand(Node* node)
 	return node->Expand();
 }
 
-void MCTS::BackPropagate(Node* node, SIDE winner)
+void MCTS::BackPropagate(Node* node, SIDE winner, int sc)
 {
 	Node* currentNode = node;
 
 	while (currentNode != nullptr)
 	{
-		currentNode->Update(winner);
+		currentNode->Update(winner, sc);
 		currentNode = currentNode->GetParent();
 	}
 }
@@ -37,13 +37,14 @@ MOVE MCTS::Go(Board board, int depth)
 		this->iteration++;
 		Node* bestNode = Select();
 		Node* expanded = bestNode->Expand();
-		SIDE simulationWinner = expanded->Simulate(depth);
-		BackPropagate(expanded, simulationWinner);
+		int sc = 0;
+		SIDE simulationWinner = expanded->Simulate(depth, sc);
+		BackPropagate(expanded, simulationWinner, sc);
 		CheckUp();
 	}
 	//printf("Iterations: %ld\n", this->iteration);
 	//this->root->DisplayMoveProbabilities();
-	MOVE bestMove = root->GetMostVisitedMove();
+	MOVE bestMove = root->GetBestRatioMove();
 	ClearSearchInfo();
 	this->iteration = 0;
 	return bestMove;
