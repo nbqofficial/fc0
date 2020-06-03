@@ -29,10 +29,6 @@ class Board
 
 		int EvaluateInt();
 
-		int EvaluateMaterial();
-
-		int EvaluateMobility();
-
 		void SwitchSide();
 
 		SIDE GetSide();

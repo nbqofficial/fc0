@@ -135,7 +135,7 @@ MOVE Negamax::Go(Board board, int depth)
 			break;
 		}
 		bestMove = newpv[0];
-		//printf("info score cp %d depth %d nodes %ld ", (int)bestScore, currDepth, this->nodes);
+		printf("info score cp %d depth %d nodes %ld\n", (int)(bestScore), currDepth, this->nodes);
 		//printf("info depth %d nodes %ld\n", currDepth, this->nodes);
 		//board.DisplayPv(newpv);
 		//printf("Move ordering: %.2f\n", (searchInfo.fhf / searchInfo.fh));

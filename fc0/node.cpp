@@ -45,8 +45,10 @@ Node* Node::Expand()
 	return this->children.back().get();
 }
 
-SIDE Node::Simulate(int depth, int& sc)
+SIDE Node::Simulate(int depth)
 {
+	int baseScore = this->board.EvaluateInt();
+
 	Board temp = this->board;
 
 	for (int i = 0; i < depth; ++i)
@@ -57,17 +59,14 @@ SIDE Node::Simulate(int depth, int& sc)
 		{
 			if (temp.IsInCheck(SIDE_WHITE))
 			{
-				sc = MATE_SCORE;
-				return SIDE_WHITE;
+				return SIDE_BLACK;
 			}
 			else if (temp.IsInCheck(SIDE_BLACK))
 			{
-				sc = MATE_SCORE;
 				return SIDE_WHITE;
 			}
 			else
 			{
-				sc = 0;
 				return SIDE_NONE;
 			}
 		}
@@ -76,9 +75,8 @@ SIDE Node::Simulate(int depth, int& sc)
 	}
 
 	int score = temp.EvaluateInt();
-	sc = abs(score);
 
-	if (sc > MCTS_WIN_FACTOR)
+	if (abs(score) > (abs(baseScore) + MCTS_WIN_FACTOR))
 	{
 		if (score > 0)
 		{
@@ -92,7 +90,7 @@ SIDE Node::Simulate(int depth, int& sc)
 	return SIDE_NONE;
 }
 
-void Node::Update(SIDE winner, int sc)
+void Node::Update(SIDE winner)
 {
 	played += 10;
 	SIDE prevSide = SIDE_WHITE;
@@ -102,7 +100,7 @@ void Node::Update(SIDE winner, int sc)
 	}
 	if (winner == prevSide)
 	{
-		this->wins += (5 + (sc / 1000));
+		this->wins += 10;
 	}
 	else if (winner == SIDE_NONE)
 	{
@@ -140,7 +138,7 @@ MOVE Node::GetBestRatioMove()
 	int bestIndex = 0;
 	for (int i = 0; i < this->children.size(); ++i)
 	{
-		float p = (this->children[i]->GetRealWins() * 100.0) / this->children[i]->GetRealPlayed();	
+		float p = (this->children[i]->GetRealWins() * 100.0) / this->children[i]->GetRealPlayed();
 		if (p >= bestRatio)
 		{
 			bestRatio = p;

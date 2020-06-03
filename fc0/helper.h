@@ -6,7 +6,11 @@ int GetTimeMs();
 
 int SquareTo120(int rank, int file);
 
+int SquareTo64(int rank, int file);
+
 void RanksFiles64Init();
+
+int MirrorBoard(int square);
 
 int SquareToRank64(int square);
 

@@ -299,6 +299,9 @@ double Board::Evaluate()
 			score += (double)(pc * 100);
 			switch (pc)
 			{
+				case WHITE_PAWN:
+					score += PawnTable[MirrorBoard(SquareTo64(i, j))];
+					break;
 				case WHITE_KNIGHT:
 					GenKnightMoves(temp, i, j, SIDE_WHITE, GEN_QUIET);
 					score += (double)temp.size();
@@ -315,6 +318,9 @@ double Board::Evaluate()
 					temp.clear();
 					break;
 
+				case BLACK_PAWN:
+					score -= PawnTable[SquareTo64(i, j)];
+					break;
 				case BLACK_KNIGHT:
 					GenKnightMoves(temp, i, j, SIDE_BLACK, GEN_QUIET);
 					score -= (double)temp.size();
@@ -357,6 +363,9 @@ int Board::EvaluateInt()
 			score += (pc * 100);
 			switch (pc)
 			{
+				case WHITE_PAWN:
+					score += PawnTable[MirrorBoard(SquareTo64(i, j))];
+					break;
 				case WHITE_KNIGHT:
 					GenKnightMoves(temp, i, j, SIDE_WHITE, GEN_QUIET);
 					score += temp.size();
@@ -373,70 +382,9 @@ int Board::EvaluateInt()
 					temp.clear();
 					break;
 
-				case BLACK_KNIGHT:
-					GenKnightMoves(temp, i, j, SIDE_BLACK, GEN_QUIET);
-					score -= temp.size();
-					temp.clear();
+				case BLACK_PAWN:
+					score -= PawnTable[SquareTo64(i, j)];
 					break;
-				case BLACK_BISHOP:
-					GenBishopMoves(temp, i, j, SIDE_BLACK, GEN_QUIET);
-					score -= temp.size();
-					temp.clear();
-					break;
-				case BLACK_ROOK:
-					GenRookMoves(temp, i, j, SIDE_BLACK, GEN_QUIET);
-					score -= temp.size();
-					temp.clear();
-					break;
-			}
-		}
-	}
-	return score;
-}
-
-int Board::EvaluateMaterial()
-{
-	int score = 0;
-	std::vector<MOVE> temp;
-
-	for (int i = 0; i < 8; ++i)
-	{
-		for (int j = 0; j < 8; ++j)
-		{
-			int pc = this->boardState[SquareTo120(i, j)];
-			score += (pc * 100);
-		}
-	}
-	return score;
-}
-
-int Board::EvaluateMobility()
-{
-	int score = 0;
-	std::vector<MOVE> temp;
-
-	for (int i = 0; i < 8; ++i)
-	{
-		for (int j = 0; j < 8; ++j)
-		{
-			switch (this->boardState[SquareTo120(i, j)])
-			{
-				case WHITE_KNIGHT:
-					GenKnightMoves(temp, i, j, SIDE_WHITE, GEN_QUIET);
-					score += temp.size();
-					temp.clear();
-					break;
-				case WHITE_BISHOP:
-					GenBishopMoves(temp, i, j, SIDE_WHITE, GEN_QUIET);
-					score += temp.size();
-					temp.clear();
-					break;
-				case WHITE_ROOK:
-					GenRookMoves(temp, i, j, SIDE_WHITE, GEN_QUIET);
-					score += temp.size();
-					temp.clear();
-					break;
-
 				case BLACK_KNIGHT:
 					GenKnightMoves(temp, i, j, SIDE_BLACK, GEN_QUIET);
 					score -= temp.size();

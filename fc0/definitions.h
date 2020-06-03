@@ -11,7 +11,7 @@
 
 // defines
 #define ENGINE_NAME "fc0"
-#define ENGINE_VERSION "61"
+#define ENGINE_VERSION "62"
 #define ENGINE_AUTHOR "nbqofficial"
 
 #define WHITE_PAWN 10
@@ -46,8 +46,8 @@
 
 #define NULL_MOVE_R 2
 
-#define MCTS_WIN_FACTOR 1001
-#define MCTS_DEPTH 10
+#define MCTS_WIN_FACTOR 500
+#define MCTS_DEPTH 6
 
 #define START_FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 #define WAC1 "2rr3k/pp3pp1/1nnqbN1p/3pN3/2pP4/2P3Q1/PPB4P/R4RK1 w - - 0 1" // Qg6
@@ -135,13 +135,34 @@ const int RookDir[4] = { -1, -10, 1, 10 };
 const int BishopDir[4] = { -9, -11, 11, 9 };
 const int KingDir[8] = { -1, -10, 1, 10, -9, -11, 11, 9 };
 
+const int PawnTable[64] = {
+	0,	0,	0,	0,	0,	0,	0,	0,
+	10,	10,	0,	-10,-10,0,	10,	10,
+	5,	0,	0,	5,	5,	0,	0,	5,
+	0,	0,	10,	20,	20,	10,	0,	0,
+	5,	5,	5,	10,	10,	5,	5,	5,
+	10,	10,	10,	20,	20,	10,	10,	10,
+	20,	20,	20,	30,	30,	20,	20,	20,
+	0,	0,	0,	0,	0,	0,	0,	0
+};
+
+const int Mirror64[64] = {
+	56,	57,	58,	59,	60,	61,	62,	63,
+	48,	49,	50,	51,	52,	53,	54,	55,
+	40,	41,	42,	43,	44,	45,	46,	47,
+	32,	33,	34,	35,	36,	37,	38,	39,
+	24,	25,	26,	27,	28,	29,	30,	31,
+	16,	17,	18,	19,	20,	21,	22,	23,
+	8,	9,	10,	11,	12,	13,	14,	15,
+	0,	1,	2,	3,	4,	5,	6,	7
+};
+
 // externs
 extern int ranks64[120];
 extern int files64[120];
 extern HANDLE hConsoleOut;
 extern HANDLE hConsoleIn;
 extern SEARCHINFO searchInfo;
-
 
 /*
 startpos:

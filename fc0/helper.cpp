@@ -18,6 +18,11 @@ int SquareTo120(int rank, int file)
 	return ((21 + (file)) + ((rank) * 10));
 }
 
+int SquareTo64(int rank, int file)
+{
+	return ((file)+((rank) * 8));
+}
+
 void RanksFiles64Init()
 {
 	for (int i = 0; i < 120; i++)
@@ -35,6 +40,11 @@ void RanksFiles64Init()
 			files64[sq] = j;
 		}
 	}
+}
+
+int MirrorBoard(int square)
+{
+	return Mirror64[square];
 }
 
 int SquareToRank64(int square)
