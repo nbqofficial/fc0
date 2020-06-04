@@ -1,100 +1,5 @@
 #include "node.h"
 
-int Node::Quiescence(Board board, int alpha, int beta)
-{
-	CheckUp();
-
-	int score = board.EvaluateAll();
-
-	if (score >= beta) { return beta; }
-
-	if (score > alpha) { alpha = score; }
-
-	Board b = board;
-	std::vector<MOVE> moves;
-	board.GenerateMoves(moves, GEN_VIOLENT, false);
-	int movesSize = moves.size();
-
-	score = -INF_SCORE;
-
-	for (int i = 0; i < movesSize; i++)
-	{
-		board.MakeMove(moves[i]); // make move
-		score = -Quiescence(board, -beta, -alpha);
-		board = b; // take back move
-
-		if (searchInfo.stopped)
-		{
-			break;
-		}
-
-		if (score > alpha)
-		{
-			if (score >= beta)
-			{
-				return beta;
-			}
-			alpha = score;
-		}
-	}
-	return alpha;
-}
-
-int Node::AlphaBeta(Board board, int depth, int alpha, int beta)
-{
-	if (depth <= 0) { return Quiescence(board, alpha, beta); }
-
-	CheckUp();
-
-	bool inchk = board.IsInCheck(board.GetSide());
-
-	int score = -INF_SCORE;
-
-	Board b = board;
-	std::vector<MOVE> moves;
-	board.GenerateMoves(moves, GEN_ALL, true);
-	int movesSize = moves.size();
-
-	if (movesSize == 0)
-	{
-		if (inchk)
-		{
-			return -MATE_SCORE + (MAX_DEPTH - depth);
-		}
-		else
-		{
-			return 0.0;
-		}
-	}
-
-	for (int i = 0; i < movesSize; ++i)
-	{
-		board.MakeMove(moves[i]); // make move
-		score = -AlphaBeta(board, depth - 1, -beta, -alpha);
-		board = b; // take back move
-
-		if (searchInfo.stopped)
-		{
-			break;
-		}
-
-		if (score > alpha)
-		{
-			if (score >= beta)
-			{
-				if (i == 0)
-				{
-					searchInfo.fhf++;
-				}
-				searchInfo.fh++;
-				return beta;
-			}
-			alpha = score;
-		}
-	}
-	return alpha;
-}
-
 bool Node::IsFullyExpanded()
 {
 	return this->children.size() == this->allowedMoves.size();
@@ -147,9 +52,33 @@ Node* Node::Expand()
 
 SIDE Node::Simulate(int depth)
 {
-	int baseScore = this->board.EvaluatePSQT();
+	int baseScore = this->board.EvaluateAll();
 
-	int score = AlphaBeta(this->board, depth, -INF_SCORE, INF_SCORE);
+	Board temp = this->board;
+
+	for (int i = 0; i < depth; ++i)
+	{
+		std::vector<MOVE> moves;
+		temp.GenerateMoves(moves, GEN_ALL, false);
+		if (moves.size() == 0)
+		{
+			if (temp.IsInCheck(SIDE_WHITE))
+			{
+				return SIDE_BLACK;
+			}
+			else if (temp.IsInCheck(SIDE_BLACK))
+			{
+				return SIDE_WHITE;
+			}
+			else
+			{
+				return SIDE_NONE;
+			}
+		}
+		std::random_shuffle(moves.begin(), moves.end(), RandomFunc);
+		temp.MakeMove(moves[0]);
+	}
+	int score = temp.EvaluateAll();
 
 	if (abs(score) > (abs(baseScore) + MCTS_WIN_FACTOR))
 	{
@@ -179,7 +108,11 @@ void Node::Update(SIDE winner)
 	}
 	else if (winner == SIDE_NONE)
 	{
-		this->wins += 5;
+		this->wins += 1;
+	}
+	else
+	{
+		this->wins -= 1;
 	}
 }
 

@@ -39,10 +39,11 @@ MOVE MCTS::Go(Board board, int depth)
 		Node* expanded = bestNode->Expand();
 		SIDE simulationWinner = expanded->Simulate(depth);
 		BackPropagate(expanded, simulationWinner);
+		CheckUp();
 	}
 	//printf("Iterations: %ld\n", this->iteration);
 	//this->root->DisplayMoveProbabilities();
-	MOVE bestMove = root->GetMostVisitedMove();
+	MOVE bestMove = root->GetBestRatioMove();
 	ClearSearchInfo();
 	this->iteration = 0;
 	return bestMove;

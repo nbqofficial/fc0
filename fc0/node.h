@@ -15,10 +15,6 @@ class Node
 
 	public:
 
-		int Quiescence(Board board, int alpha, int beta);
-
-		int AlphaBeta(Board board, int depth, int alpha, int beta);
-
 		bool IsFullyExpanded();
 
 		bool IsLeaf();

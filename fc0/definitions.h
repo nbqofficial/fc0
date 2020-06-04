@@ -11,7 +11,7 @@
 
 // defines
 #define ENGINE_NAME "fc0"
-#define ENGINE_VERSION "65"
+#define ENGINE_VERSION "66"
 #define ENGINE_AUTHOR "nbq" //"nbqofficial <3 Pomid0ra"
 
 #define WHITE_PAWN 10
@@ -46,8 +46,8 @@
 
 #define NULL_MOVE_R 2
 
-#define MCTS_WIN_FACTOR 15
-#define MCTS_DEPTH 2
+#define MCTS_WIN_FACTOR 1000
+#define MCTS_DEPTH 8
 
 #define START_FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 #define WAC1 "2rr3k/pp3pp1/1nnqbN1p/3pN3/2pP4/2P3Q1/PPB4P/R4RK1 w - - 0 1" // Qg6
