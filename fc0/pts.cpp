@@ -1,12 +1,12 @@
 #include "pts.h"
 
-double PTS::Quiescence(Board board, double alpha, double beta)
+int PTS::Quiescence(Board board, int alpha, int beta)
 {
 	if ((nodes & 2047) == 0) { CheckUp(); }
 
 	this->nodes++;
 
-	double score = board.Evaluate();
+	int score = board.Evaluate();
 
 	if (score >= beta) { return beta; }
 
@@ -42,7 +42,7 @@ double PTS::Quiescence(Board board, double alpha, double beta)
 	return alpha;
 }
 
-double PTS::NegaPTS(Board board, double probability, double alpha, double beta, std::vector<MOVE>& pv)
+int PTS::NegaPTS(Board board, double probability, int alpha, int beta, std::vector<MOVE>& pv)
 {
 	if (probability < PROBABILITY_LIMIT) { return Quiescence(board, alpha, beta); }
 
@@ -50,7 +50,7 @@ double PTS::NegaPTS(Board board, double probability, double alpha, double beta, 
 
 	bool inchk = board.IsInCheck(board.GetSide());
 
-	double score = -INF_SCORE;
+	int score = -INF_SCORE;
 
 	Board b = board;
 	std::vector<MOVE> moves;
@@ -105,7 +105,7 @@ double PTS::NegaPTS(Board board, double probability, double alpha, double beta, 
 MOVE PTS::Go(Board board, double probability)
 {
 	MOVE bestMove = { 0 };
-	double bestScore = -INF_SCORE;
+	int bestScore = -INF_SCORE;
 
 	for (double currProb = (PROBABILITY_LIMIT * 10); currProb <= probability; currProb*=10)
 	{
@@ -116,9 +116,9 @@ MOVE PTS::Go(Board board, double probability)
 			break;
 		}
 		bestMove = newpv[0];
-		//printf("info score cp %d depth %f nodes %ld\n", (int)bestScore, currProb, this->nodes);
+		printf("info score cp %d depth %f nodes %ld ", (int)bestScore, currProb, this->nodes);
 		//printf("info nodes %ld\n", this->nodes);
-		//board.DisplayPv(newpv);
+		board.DisplayPv(newpv);
 		//printf("Move ordering: %.2f\n", (searchInfo.fhf / searchInfo.fh));
 		//printf("Null cuttoffs: %d\n", searchInfo.nullCutoff);
 	}

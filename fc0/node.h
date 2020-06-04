@@ -15,11 +15,17 @@ class Node
 
 	public:
 
+		int Quiescence(Board board, int alpha, int beta);
+
+		int AlphaBeta(Board board, int depth, int alpha, int beta);
+
 		bool IsFullyExpanded();
 
 		bool IsLeaf();
 
 		bool HasParent();
+
+		int GetPlayed();
 
 		double GetUCT();
 
@@ -29,9 +35,9 @@ class Node
 
 		Node* Expand();
 
-		SIDE Simulate(int depth, int& sc);
+		SIDE Simulate(int depth);
 
-		void Update(SIDE winner, int sc);
+		void Update(SIDE winner);
 
 		MOVE GetMostVisitedMove();
 

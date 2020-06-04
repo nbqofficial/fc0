@@ -25,9 +25,7 @@ class Board
 
 		void DisplayInfo();
 
-		double Evaluate();
-
-		int EvaluateInt();
+		int Evaluate();
 
 		int EvaluatePSQT();
 

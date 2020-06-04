@@ -1,12 +1,12 @@
 #include "negamax.h"
 
-double Negamax::Quiescence(Board board, double alpha, double beta)
+int Negamax::Quiescence(Board board, int alpha, int beta)
 {
 	if ((nodes & 2047) == 0) { CheckUp(); }
 
 	this->nodes++;
 
-	double score = board.Evaluate();
+	int score = board.Evaluate();
 
 	if (score >= beta) { return beta; }
 
@@ -42,19 +42,15 @@ double Negamax::Quiescence(Board board, double alpha, double beta)
 	return alpha;
 }
 
-double Negamax::NMax(Board board, int depth, double alpha, double beta, std::vector<MOVE>& pv, bool nullMove)
+int Negamax::NMax(Board board, int depth, int alpha, int beta, std::vector<MOVE>& pv, bool nullMove)
 {
 	if (depth <= 0) { return Quiescence(board, alpha, beta); }
 
 	if ((nodes & 2047) == 0) { CheckUp(); }
 
 	bool inchk = board.IsInCheck(board.GetSide());
-	if (inchk)
-	{
-		depth++;
-	}
 
-	double score = -INF_SCORE;
+	int score = -INF_SCORE;
 
 	if (nullMove && !inchk && searchInfo.depth != depth && depth >= (NULL_MOVE_R + 1))
 	{
@@ -124,7 +120,7 @@ double Negamax::NMax(Board board, int depth, double alpha, double beta, std::vec
 MOVE Negamax::Go(Board board, int depth)
 {
 	MOVE bestMove = { 0 };
-	double bestScore = -INF_SCORE;
+	int bestScore = -INF_SCORE;
 
 	for (int currDepth = 1; currDepth <= depth; currDepth++)
 	{
@@ -135,9 +131,9 @@ MOVE Negamax::Go(Board board, int depth)
 			break;
 		}
 		bestMove = newpv[0];
-		//printf("info score cp %d depth %d nodes %ld\n", (int)(bestScore), currDepth, this->nodes);
+		printf("info score cp %d depth %d nodes %ld ", (int)(bestScore), currDepth, this->nodes);
 		//printf("info depth %d nodes %ld\n", currDepth, this->nodes);
-		//board.DisplayPv(newpv);
+		board.DisplayPv(newpv);
 		//printf("Move ordering: %.2f\n", (searchInfo.fhf / searchInfo.fh));
 		//printf("Null cuttoffs: %d\n", searchInfo.nullCutoff);
 	}

@@ -8,9 +8,9 @@ class PTS
 
 		long nodes = 0;
 
-		double Quiescence(Board board, double alpha, double beta);
+		int Quiescence(Board board, int alpha, int beta);
 
-		double NegaPTS(Board board, double probability, double alpha, double beta, std::vector<MOVE>& pv);
+		int NegaPTS(Board board, double probability, int alpha, int beta, std::vector<MOVE>& pv);
 
 	public:
 

@@ -22,7 +22,7 @@ void Training::ProcessGame(std::string fileName)
 	for (int i = 0; i < boardHistory.size(); i++)
 	{
 		cnt++;
-		vn.Evaluate(boardHistory[i], true, {tanh(boardHistory[i].EvaluateInt())});
+		vn.Evaluate(boardHistory[i], true, {tanh(boardHistory[i].Evaluate())});
 	}
 	boardHistory.clear();
 }

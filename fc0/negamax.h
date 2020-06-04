@@ -8,9 +8,9 @@ class Negamax
 
 		long nodes = 0;
 
-		double Quiescence(Board board, double alpha, double beta);
+		int Quiescence(Board board, int alpha, int beta);
 
-		double NMax(Board board, int depth, double alpha, double beta, std::vector<MOVE>& pv, bool nullMove);
+		int NMax(Board board, int depth, int alpha, int beta, std::vector<MOVE>& pv, bool nullMove);
 
 	public:
 
