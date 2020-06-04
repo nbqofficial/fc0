@@ -11,8 +11,8 @@
 
 // defines
 #define ENGINE_NAME "fc0"
-#define ENGINE_VERSION "64"
-#define ENGINE_AUTHOR "nbqofficial <3 Pomid0ra"
+#define ENGINE_VERSION "65"
+#define ENGINE_AUTHOR "nbq" //"nbqofficial <3 Pomid0ra"
 
 #define WHITE_PAWN 10
 #define WHITE_KNIGHT 30
@@ -46,7 +46,7 @@
 
 #define NULL_MOVE_R 2
 
-#define MCTS_WIN_FACTOR 10
+#define MCTS_WIN_FACTOR 15
 #define MCTS_DEPTH 2
 
 #define START_FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"

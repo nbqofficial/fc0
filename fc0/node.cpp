@@ -4,7 +4,7 @@ int Node::Quiescence(Board board, int alpha, int beta)
 {
 	CheckUp();
 
-	int score = board.EvaluatePSQT();
+	int score = board.EvaluateAll();
 
 	if (score >= beta) { return beta; }
 
@@ -181,17 +181,13 @@ void Node::Update(SIDE winner)
 	{
 		this->wins += 5;
 	}
-	else // lose
-	{
-		this->wins -= 10;
-	}
 }
 
 MOVE Node::GetMostVisitedMove()
 {
 	auto best = std::max_element(this->children.begin(), this->children.end(),
 		[](const std::unique_ptr<Node>& left, const std::unique_ptr<Node>& right) {
-			return left->played < right->played;
+			return left->played <= right->played;
 		});
 
 	int bestIndex = std::distance(this->children.begin(), best);

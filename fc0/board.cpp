@@ -401,6 +401,77 @@ int Board::EvaluatePSQT()
 	}
 }
 
+int Board::EvaluateAll()
+{
+	int score = 0;
+	std::vector<MOVE> temp;
+
+	for (int i = 0; i < 8; ++i)
+	{
+		for (int j = 0; j < 8; ++j)
+		{
+			int sq = SquareTo120(i, j);
+			int pc = this->boardState[sq];
+			score += (pc * 100);
+			switch (pc)
+			{
+				case WHITE_PAWN:
+					score += PawnTable[MirrorBoard(SquareTo64(i, j))];
+					break;
+				case WHITE_KNIGHT:
+					score += KnightTable[MirrorBoard(SquareTo64(i, j))];
+					GenKnightMoves(temp, i, j, SIDE_WHITE, GEN_ALL);
+					score += temp.size();
+					temp.clear();
+					break;
+				case WHITE_BISHOP:
+					score += BishopTable[MirrorBoard(SquareTo64(i, j))];
+					GenBishopMoves(temp, i, j, SIDE_WHITE, GEN_ALL);
+					score += temp.size();
+					temp.clear();
+					break;
+				case WHITE_ROOK:
+					score += RookTable[MirrorBoard(SquareTo64(i, j))];
+					GenRookMoves(temp, i, j, SIDE_WHITE, GEN_ALL);
+					score += temp.size();
+					temp.clear();
+					break;
+
+				case BLACK_PAWN:
+					score -= PawnTable[SquareTo64(i, j)];
+					break;
+				case BLACK_KNIGHT:
+					score -= KnightTable[SquareTo64(i, j)];
+					GenKnightMoves(temp, i, j, SIDE_BLACK, GEN_ALL);
+					score -= temp.size();
+					temp.clear();
+					break;
+				case BLACK_BISHOP:
+					score -= BishopTable[SquareTo64(i, j)];
+					GenBishopMoves(temp, i, j, SIDE_BLACK, GEN_ALL);
+					score -= temp.size();
+					temp.clear();
+					break;
+				case BLACK_ROOK:
+					score -= RookTable[SquareTo64(i, j)];
+					GenRookMoves(temp, i, j, SIDE_BLACK, GEN_ALL);
+					score -= temp.size();
+					temp.clear();
+					break;
+			}
+		}
+	}
+
+	if (this->side == SIDE_WHITE)
+	{
+		return score;
+	}
+	else
+	{
+		return -score;
+	}
+}
+
 void Board::SwitchSide()
 {
 	if (this->side == SIDE_WHITE)
