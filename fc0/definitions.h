@@ -11,7 +11,7 @@
 
 // defines
 #define ENGINE_NAME "fc0"
-#define ENGINE_VERSION "66"
+#define ENGINE_VERSION "67"
 #define ENGINE_AUTHOR "nbq" //"nbqofficial <3 Pomid0ra"
 
 #define WHITE_PAWN 10
@@ -34,9 +34,6 @@
 #define WHITE_QUEENSIDE_CASTLE_MOVE 2
 #define BLACK_KINGSIDE_CASTLE_MOVE 3
 #define BLACK_QUEENSIDE_CASTLE_MOVE 4
-
-#define MOVE_VIOLENT_TYPE 0
-#define MOVE_QUIET_TYPE 1
 
 #define MAX_INPUT_BUFFER 400*6
 
@@ -94,7 +91,6 @@
 typedef struct _MOVE
 {
 	int score;
-	int type;
 	int from;
 	int to;
 	int promoteTo;

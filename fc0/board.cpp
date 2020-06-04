@@ -697,14 +697,12 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 		{
 			if (this->boardState[square - 10] == EMPTY_SQUARE)
 			{
-				m.type = MOVE_VIOLENT_TYPE;
 				m.to = square - 10;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
 				m.score = PxQ;
 				m.promoteTo = WHITE_QUEEN;
 				quiet.push_back(m);
-				m.type = MOVE_QUIET_TYPE;
 				m.score = KxP;
 				m.promoteTo = WHITE_ROOK;
 				quiet.push_back(m);
@@ -735,7 +733,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 						m.score = PxQ;
 						break;
 				}
-				m.type = MOVE_VIOLENT_TYPE;
 				m.to = square - 9;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -770,7 +767,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 						m.score = PxQ;
 						break;
 				}
-				m.type = MOVE_VIOLENT_TYPE;
 				m.to = square - 11;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -789,7 +785,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 			if (this->boardState[square - 10] == EMPTY_SQUARE)
 			{
 				m.score = 0;
-				m.type = MOVE_QUIET_TYPE;
 				m.to = square - 10;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -799,7 +794,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 				if (rank == 6 && this->boardState[square - 20] == EMPTY_SQUARE)
 				{
 					m.score = 0;
-					m.type = MOVE_QUIET_TYPE;
 					m.to = square - 20;
 					m.castling = NO_CASTLING_MOVE;
 					m.enPas = false;
@@ -829,7 +823,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 						m.score = PxQ;
 						break;
 				}
-				m.type = MOVE_VIOLENT_TYPE;
 				m.to = square - 9;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -858,7 +851,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 						m.score = PxQ;
 						break;
 				}
-				m.type = MOVE_VIOLENT_TYPE;
 				m.to = square - 11;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -871,7 +863,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 				square - 9 == enPas)
 			{
 				m.score = PxP;
-				m.type = MOVE_VIOLENT_TYPE;
 				m.to = square - 9;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = true;
@@ -883,7 +874,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 				square - 11 == enPas)
 			{
 				m.score = PxP;
-				m.type = MOVE_VIOLENT_TYPE;
 				m.to = square - 11;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = true;
@@ -898,14 +888,12 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 		{
 			if (this->boardState[square + 10] == EMPTY_SQUARE)
 			{
-				m.type = MOVE_VIOLENT_TYPE;
 				m.to = square + 10;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
 				m.score = PxQ;
 				m.promoteTo = BLACK_QUEEN;
 				quiet.push_back(m);
-				m.type = MOVE_QUIET_TYPE;
 				m.score = KxP;
 				m.promoteTo = BLACK_ROOK;
 				quiet.push_back(m);
@@ -936,7 +924,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 						m.score = PxQ;
 						break;
 				}
-				m.type = MOVE_VIOLENT_TYPE;
 				m.to = square + 9;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -971,7 +958,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 						m.score = PxQ;
 						break;
 				}
-				m.type = MOVE_VIOLENT_TYPE;
 				m.to = square + 11;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -990,7 +976,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 			if (this->boardState[square + 10] == EMPTY_SQUARE)
 			{
 				m.score = 0;
-				m.type = MOVE_QUIET_TYPE;
 				m.to = square + 10;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -1000,7 +985,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 				if (rank == 1 && this->boardState[square + 20] == EMPTY_SQUARE)
 				{
 					m.score = 0;
-					m.type = MOVE_QUIET_TYPE;
 					m.to = square + 20;
 					m.castling = NO_CASTLING_MOVE;
 					m.enPas = false;
@@ -1030,7 +1014,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 						m.score = PxQ;
 						break;
 				}
-				m.type = MOVE_VIOLENT_TYPE;
 				m.to = square + 9;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -1059,7 +1042,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 						m.score = PxQ;
 						break;
 				}
-				m.type = MOVE_VIOLENT_TYPE;
 				m.to = square + 11;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -1072,7 +1054,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 				square + 9 == enPas)
 			{
 				m.score = PxP;
-				m.type = MOVE_VIOLENT_TYPE;
 				m.to = square + 9;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = true;
@@ -1084,7 +1065,6 @@ void Board::GenPawnMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 				square + 11 == enPas)
 			{
 				m.score = PxP;
-				m.type = MOVE_VIOLENT_TYPE;
 				m.to = square + 11;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = true;
@@ -1134,7 +1114,6 @@ void Board::GenKnightMoves(std::vector<MOVE>& moves, int rank, int file, SIDE si
 				if (this->boardState[square + KnightDir[i]] == EMPTY_SQUARE)
 				{
 					m.score = 0;
-					m.type = MOVE_QUIET_TYPE;
 					quiet.push_back(m);
 				}
 				else
@@ -1157,7 +1136,6 @@ void Board::GenKnightMoves(std::vector<MOVE>& moves, int rank, int file, SIDE si
 							m.score = NxQ;
 							break;
 					}
-					m.type = MOVE_VIOLENT_TYPE;
 					violent.push_back(m);
 				}
 			}
@@ -1178,7 +1156,6 @@ void Board::GenKnightMoves(std::vector<MOVE>& moves, int rank, int file, SIDE si
 				if (this->boardState[square + KnightDir[i]] == EMPTY_SQUARE)
 				{
 					m.score = 0;
-					m.type = MOVE_QUIET_TYPE;
 					quiet.push_back(m);
 				}
 				else
@@ -1201,7 +1178,6 @@ void Board::GenKnightMoves(std::vector<MOVE>& moves, int rank, int file, SIDE si
 							m.score = NxQ;
 							break;
 					}
-					m.type = MOVE_VIOLENT_TYPE;
 					violent.push_back(m);
 				}
 			}
@@ -1267,7 +1243,6 @@ void Board::GenBishopMoves(std::vector<MOVE>& moves, int rank, int file, SIDE si
 							m.score = BxQ;
 							break;
 					}
-					m.type = MOVE_VIOLENT_TYPE;
 					m.to = newSquare;
 					m.castling = NO_CASTLING_MOVE;
 					m.enPas = false;
@@ -1276,7 +1251,6 @@ void Board::GenBishopMoves(std::vector<MOVE>& moves, int rank, int file, SIDE si
 					break;
 				}
 				m.score = 0;
-				m.type = MOVE_QUIET_TYPE;
 				m.to = newSquare;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -1322,7 +1296,6 @@ void Board::GenBishopMoves(std::vector<MOVE>& moves, int rank, int file, SIDE si
 							m.score = BxQ;
 							break;
 					}
-					m.type = MOVE_VIOLENT_TYPE;
 					m.to = newSquare;
 					m.castling = NO_CASTLING_MOVE;
 					m.enPas = false;
@@ -1331,7 +1304,6 @@ void Board::GenBishopMoves(std::vector<MOVE>& moves, int rank, int file, SIDE si
 					break;
 				}
 				m.score = 0;
-				m.type = MOVE_QUIET_TYPE;
 				m.to = newSquare;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -1403,7 +1375,6 @@ void Board::GenRookMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 							m.score = RxQ;
 							break;
 					}
-					m.type = MOVE_VIOLENT_TYPE;
 					m.to = newSquare;
 					m.castling = NO_CASTLING_MOVE;
 					m.enPas = false;
@@ -1412,7 +1383,6 @@ void Board::GenRookMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 					break;
 				}
 				m.score = 0;
-				m.type = MOVE_QUIET_TYPE;
 				m.to = newSquare;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -1458,7 +1428,6 @@ void Board::GenRookMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 							m.score = RxQ;
 							break;
 					}
-					m.type = MOVE_VIOLENT_TYPE;
 					m.to = newSquare;
 					m.castling = NO_CASTLING_MOVE;
 					m.enPas = false;
@@ -1467,7 +1436,6 @@ void Board::GenRookMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 					break;
 				}
 				m.score = 0;
-				m.type = MOVE_QUIET_TYPE;
 				m.to = newSquare;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -1539,7 +1507,6 @@ void Board::GenQueenMoves(std::vector<MOVE>& moves, int rank, int file, SIDE sid
 							m.score = QxQ;
 							break;
 					}
-					m.type = MOVE_VIOLENT_TYPE;
 					m.to = newSquare;
 					m.castling = NO_CASTLING_MOVE;
 					m.enPas = false;
@@ -1548,7 +1515,6 @@ void Board::GenQueenMoves(std::vector<MOVE>& moves, int rank, int file, SIDE sid
 					break;
 				}
 				m.score = 0;
-				m.type = MOVE_QUIET_TYPE;
 				m.to = newSquare;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -1592,7 +1558,6 @@ void Board::GenQueenMoves(std::vector<MOVE>& moves, int rank, int file, SIDE sid
 							m.score = QxQ;
 							break;
 					}
-					m.type = MOVE_VIOLENT_TYPE;
 					m.to = newSquare;
 					m.castling = NO_CASTLING_MOVE;
 					m.enPas = false;
@@ -1601,7 +1566,6 @@ void Board::GenQueenMoves(std::vector<MOVE>& moves, int rank, int file, SIDE sid
 					break;
 				}
 				m.score = 0;
-				m.type = MOVE_QUIET_TYPE;
 				m.to = newSquare;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -1647,7 +1611,6 @@ void Board::GenQueenMoves(std::vector<MOVE>& moves, int rank, int file, SIDE sid
 							m.score = QxQ;
 							break;
 					}
-					m.type = MOVE_VIOLENT_TYPE;
 					m.to = newSquare;
 					m.castling = NO_CASTLING_MOVE;
 					m.enPas = false;
@@ -1656,7 +1619,6 @@ void Board::GenQueenMoves(std::vector<MOVE>& moves, int rank, int file, SIDE sid
 					break;
 				}
 				m.score = 0;
-				m.type = MOVE_QUIET_TYPE;
 				m.to = newSquare;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -1700,7 +1662,6 @@ void Board::GenQueenMoves(std::vector<MOVE>& moves, int rank, int file, SIDE sid
 							m.score = QxQ;
 							break;
 					}
-					m.type = MOVE_VIOLENT_TYPE;
 					m.to = newSquare;
 					m.castling = NO_CASTLING_MOVE;
 					m.enPas = false;
@@ -1709,7 +1670,6 @@ void Board::GenQueenMoves(std::vector<MOVE>& moves, int rank, int file, SIDE sid
 					break;
 				}
 				m.score = 0;
-				m.type = MOVE_QUIET_TYPE;
 				m.to = newSquare;
 				m.castling = NO_CASTLING_MOVE;
 				m.enPas = false;
@@ -1763,7 +1723,6 @@ void Board::GenKingMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 				if (this->boardState[square + KingDir[i]] == EMPTY_SQUARE)
 				{
 					m.score = 0;
-					m.type = MOVE_QUIET_TYPE;
 					quiet.push_back(m);
 				}
 				else
@@ -1786,7 +1745,6 @@ void Board::GenKingMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 							m.score = KxQ;
 							break;
 					}
-					m.type = MOVE_VIOLENT_TYPE;
 					violent.push_back(m);
 				}
 			}
@@ -1798,7 +1756,6 @@ void Board::GenKingMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 			!IsSquareAttacked(96, SIDE_BLACK) && !IsSquareAttacked(97, SIDE_BLACK))
 		{
 			m.score = 0;
-			m.type = MOVE_QUIET_TYPE;
 			m.to = 0;
 			m.castling = WHITE_KINGSIDE_CASTLE_MOVE;
 			m.enPas = false;
@@ -1812,7 +1769,6 @@ void Board::GenKingMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 			!IsSquareAttacked(93, SIDE_BLACK) && !IsSquareAttacked(94, SIDE_BLACK) && !IsSquareAttacked(95, SIDE_BLACK))
 		{
 			m.score = 0;
-			m.type = MOVE_QUIET_TYPE;
 			m.to = 0;
 			m.castling = WHITE_QUEENSIDE_CASTLE_MOVE;
 			m.enPas = false;
@@ -1837,7 +1793,6 @@ void Board::GenKingMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 				if (this->boardState[square + KingDir[i]] == EMPTY_SQUARE)
 				{
 					m.score = 0;
-					m.type = MOVE_QUIET_TYPE;
 					quiet.push_back(m);
 				}
 				else
@@ -1860,7 +1815,6 @@ void Board::GenKingMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 							m.score = KxQ;
 							break;
 					}
-					m.type = MOVE_VIOLENT_TYPE;
 					violent.push_back(m);
 				}
 			}
@@ -1872,7 +1826,6 @@ void Board::GenKingMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 			!IsSquareAttacked(26, SIDE_WHITE) && !IsSquareAttacked(27, SIDE_WHITE))
 		{
 			m.score = 0;
-			m.type = MOVE_QUIET_TYPE;
 			m.to = 0;
 			m.castling = BLACK_KINGSIDE_CASTLE_MOVE;
 			m.enPas = false;
@@ -1886,7 +1839,6 @@ void Board::GenKingMoves(std::vector<MOVE>& moves, int rank, int file, SIDE side
 			!IsSquareAttacked(23, SIDE_WHITE) && !IsSquareAttacked(24, SIDE_WHITE) && !IsSquareAttacked(25, SIDE_WHITE))
 		{
 			m.score = 0;
-			m.type = MOVE_QUIET_TYPE;
 			m.to = 0;
 			m.castling = BLACK_QUEENSIDE_CASTLE_MOVE;
 			m.enPas = false;
@@ -2045,7 +1997,6 @@ MOVE Board::StringToMove(std::string moveStr)
 	int tr = 8 - (moveStr[3] - '0');
 	int tf = LetterToFile(moveStr[2]);
 	MOVE m;
-	m.type = MOVE_QUIET_TYPE;
 	m.from = SquareTo120(fr, ff);
 	m.to = SquareTo120(tr, tf);
 	m.castling = NO_CASTLING_MOVE;
