@@ -174,7 +174,16 @@ exitFEN2:
 	{
 		for (int k = 0; k < 8; ++k)
 		{
-			this->boardState[SquareTo120(j, k)] = bp[j][k];
+			int sq = SquareTo120(j, k);
+			this->boardState[sq] = bp[j][k];
+			if (this->boardState[sq] == WHITE_KING)
+			{
+				this->whiteKingSquare = sq;
+			}
+			else if (this->boardState[sq] == BLACK_KING)
+			{
+				this->blackKingSquare = sq;
+			}	
 		}
 	}
 }
@@ -630,22 +639,13 @@ bool Board::IsSquareAttacked(int square, SIDE byWho)
 
 bool Board::IsInCheck(SIDE who)
 {
-	for (int i = 0; i < this->boardState.size(); ++i)
+	if (who == SIDE_WHITE)
 	{
-		if (who == SIDE_WHITE)
-		{
-			if (this->boardState[i] == WHITE_KING)
-			{
-				return IsSquareAttacked(i, SIDE_BLACK);
-			}
-		}
-		else
-		{
-			if (this->boardState[i] == BLACK_KING)
-			{
-				return IsSquareAttacked(i, SIDE_WHITE);
-			}
-		}
+		return IsSquareAttacked(this->whiteKingSquare, SIDE_BLACK);
+	}
+	else
+	{
+		return IsSquareAttacked(this->blackKingSquare, SIDE_WHITE);
 	}
 	return false;
 }
@@ -653,11 +653,13 @@ bool Board::IsInCheck(SIDE who)
 std::vector<MOVE> Board::ExtractLegalMoves(std::vector<MOVE> moves)
 {
 	std::vector<MOVE> legalMoves;
-	for (int i = 0; i < moves.size(); i++)
+	for (int i = 0; i < moves.size(); ++i)
 	{
 		std::vector<int> tb = this->boardState;
 		int tenPas = this->enPassantSquare;
 		SIDE tside = this->side;
+		int twk = this->whiteKingSquare;
+		int tbk = this->blackKingSquare;
 		bool twhiteKingsideCastle = this->whiteKingsideCastle;
 		bool twhiteQueensideCastle = this->whiteQueensideCastle;
 		bool tblackKingsideCastle = this->blackKingsideCastle;
@@ -672,6 +674,8 @@ std::vector<MOVE> Board::ExtractLegalMoves(std::vector<MOVE> moves)
 		this->boardState = tb;
 		this->enPassantSquare = tenPas;
 		this->side = tside;
+		this->whiteKingSquare = twk;;
+		this->blackKingSquare = tbk;
 		this->whiteKingsideCastle = twhiteKingsideCastle;
 		this->whiteQueensideCastle = twhiteQueensideCastle;
 		this->blackKingsideCastle = tblackKingsideCastle;
@@ -2012,46 +2016,46 @@ MOVE Board::StringToMove(std::string moveStr)
 	{
 		switch (moveStr[4])
 		{
-		case 'n':
-			if (this->side == SIDE_WHITE)
-			{
-				m.promoteTo = WHITE_KNIGHT;
-			}
-			else
-			{
-				m.promoteTo = BLACK_KNIGHT;
-			}
-			break;
-		case 'b':
-			if (this->side == SIDE_WHITE)
-			{
-				m.promoteTo = WHITE_BISHOP;
-			}
-			else
-			{
-				m.promoteTo = BLACK_BISHOP;
-			}
-			break;
-		case 'r':
-			if (this->side == SIDE_WHITE)
-			{
-				m.promoteTo = WHITE_ROOK;
-			}
-			else
-			{
-				m.promoteTo = BLACK_ROOK;
-			}
-			break;
-		case 'q':
-			if (this->side == SIDE_WHITE)
-			{
-				m.promoteTo = WHITE_QUEEN;
-			}
-			else
-			{
-				m.promoteTo = BLACK_QUEEN;
-			}
-			break;
+			case 'n':
+				if (this->side == SIDE_WHITE)
+				{
+					m.promoteTo = WHITE_KNIGHT;
+				}
+				else
+				{
+					m.promoteTo = BLACK_KNIGHT;
+				}
+				break;
+			case 'b':
+				if (this->side == SIDE_WHITE)
+				{
+					m.promoteTo = WHITE_BISHOP;
+				}
+				else
+				{
+					m.promoteTo = BLACK_BISHOP;
+				}
+				break;
+			case 'r':
+				if (this->side == SIDE_WHITE)
+				{
+					m.promoteTo = WHITE_ROOK;
+				}
+				else
+				{
+					m.promoteTo = BLACK_ROOK;
+				}
+				break;
+			case 'q':
+				if (this->side == SIDE_WHITE)
+				{
+					m.promoteTo = WHITE_QUEEN;
+				}
+				else
+				{
+					m.promoteTo = BLACK_QUEEN;
+				}
+				break;
 		}
 	}
 
@@ -2102,66 +2106,9 @@ std::string Board::MoveToString(MOVE m)
 	int promoteTo = m.promoteTo;
 	char promChar;
 
-	switch (SquareToFile64(m.from))
-	{
-		case 0:
-			fromFile = 'a';
-			break;
-		case 1:
-			fromFile = 'b';
-			break;
-		case 2:
-			fromFile = 'c';
-			break;
-		case 3:
-			fromFile = 'd';
-			break;
-		case 4:
-			fromFile = 'e';
-			break;
-		case 5:
-			fromFile = 'f';
-			break;
-		case 6:
-			fromFile = 'g';
-			break;
-		case 7:
-			fromFile = 'h';
-			break;
-		default:
-			break;
-	}
-
-	switch (SquareToFile64(m.to))
-	{
-		case 0:
-			toFile = 'a';
-			break;
-		case 1:
-			toFile = 'b';
-			break;
-		case 2:
-			toFile = 'c';
-			break;
-		case 3:
-			toFile = 'd';
-			break;
-		case 4:
-			toFile = 'e';
-			break;
-		case 5:
-			toFile = 'f';
-			break;
-		case 6:
-			toFile = 'g';
-			break;
-		case 7:
-			toFile = 'h';
-			break;
-		default:
-			break;
-	}
-
+	fromFile = FileToLetter(SquareToFile64(m.from));
+	toFile = FileToLetter(SquareToFile64(m.to));
+	
 	switch (abs(promoteTo))
 	{
 		case WHITE_KNIGHT:
@@ -2243,11 +2190,13 @@ void Board::MakeMove(MOVE move)
 			}
 			else if (move.promoteTo == WHITE_KING)
 			{
+				this->whiteKingSquare = move.to;
 				this->whiteKingsideCastle = false;
 				this->whiteQueensideCastle = false;
 			}
 			else if (move.promoteTo == BLACK_KING)
 			{
+				this->blackKingSquare = move.to;
 				this->blackKingsideCastle = false;
 				this->blackQueensideCastle = false;
 			}
@@ -2274,6 +2223,7 @@ void Board::MakeMove(MOVE move)
 		if (move.castling == WHITE_KINGSIDE_CASTLE_MOVE)
 		{
 			this->boardState[97] = WHITE_KING;
+			this->whiteKingSquare = 97;
 			this->boardState[96] = WHITE_ROOK;
 			this->boardState[95] = EMPTY_SQUARE;
 			this->boardState[98] = EMPTY_SQUARE;
@@ -2283,6 +2233,7 @@ void Board::MakeMove(MOVE move)
 		else if (move.castling == WHITE_QUEENSIDE_CASTLE_MOVE)
 		{
 			this->boardState[93] = WHITE_KING;
+			this->whiteKingSquare = 93;
 			this->boardState[94] = WHITE_ROOK;
 			this->boardState[95] = EMPTY_SQUARE;
 			this->boardState[91] = EMPTY_SQUARE;
@@ -2292,6 +2243,7 @@ void Board::MakeMove(MOVE move)
 		else if (move.castling == BLACK_KINGSIDE_CASTLE_MOVE)
 		{
 			this->boardState[27] = BLACK_KING;
+			this->blackKingSquare = 27;
 			this->boardState[26] = BLACK_ROOK;
 			this->boardState[25] = EMPTY_SQUARE;
 			this->boardState[28] = EMPTY_SQUARE;
@@ -2301,6 +2253,7 @@ void Board::MakeMove(MOVE move)
 		else // black queenside castle move
 		{
 			this->boardState[23] = BLACK_KING;
+			this->blackKingSquare = 23;
 			this->boardState[24] = BLACK_ROOK;
 			this->boardState[25] = EMPTY_SQUARE;
 			this->boardState[21] = EMPTY_SQUARE;
@@ -2351,12 +2304,6 @@ std::vector<double> Board::ToTensor()
 
 Board::Board()
 {
-	this->enPassantSquare = 0;
-	this->side = SIDE_WHITE;
-	this->whiteKingsideCastle = false;
-	this->whiteQueensideCastle = false;
-	this->blackKingsideCastle = false;
-	this->blackQueensideCastle = false;
 }
 
 Board::~Board()

@@ -14,7 +14,7 @@ int Negamax::Quiescence(Board board, int alpha, int beta)
 
 	Board b = board;
 	std::vector<MOVE> moves;
-	board.GenerateMoves(moves, GEN_VIOLENT, false);
+	board.GenerateMoves(moves, GEN_VIOLENT, true);
 	int movesSize = moves.size();
 
 	score = -INF_SCORE;
@@ -131,7 +131,7 @@ MOVE Negamax::Go(Board board, int depth)
 			break;
 		}
 		bestMove = newpv[0];
-		//printf("info score cp %d depth %d nodes %ld ", (int)(bestScore), currDepth, this->nodes);
+		//printf("info score cp %d depth %d nodes %ld ", (int)(bestScore / 100), currDepth, this->nodes);
 		//printf("info depth %d nodes %ld\n", currDepth, this->nodes);
 		//board.DisplayPv(newpv);
 		//printf("Move ordering: %.2f\n", (searchInfo.fhf / searchInfo.fh));

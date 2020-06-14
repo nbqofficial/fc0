@@ -11,7 +11,7 @@
 
 // defines
 #define ENGINE_NAME "fc0"
-#define ENGINE_VERSION "67"
+#define ENGINE_VERSION "68"
 #define ENGINE_AUTHOR "nbq" //"nbqofficial <3 Pomid0ra"
 
 #define WHITE_PAWN 10
@@ -193,20 +193,3 @@ extern HANDLE hConsoleOut;
 extern HANDLE hConsoleIn;
 extern SEARCHINFO searchInfo;
 
-/*
-startpos:
-depth: 1 score: 6 nodes: 20 pv: d2d3 mo: -nan nc: 0
-depth: 2 score: 0 nodes: 156 pv: d2d3 d7d6 mo: 0.47 nc: 0
-depth: 3 score: 5 nodes: 2366 pv: g1f3 d7d6 d2d3 mo: 0.29 nc: 0
-depth: 4 score: 0 nodes: 8881 pv: d2d3 b8c6 g1f3 e7e6 mo: 0.36 nc: 41
-depth: 5 score: 3 nodes: 83867 pv: d2d3 b8c6 b1c3 e7e6 g1f3 mo: 0.36 nc: 519
-depth: 6 score: 1 nodes: 411662 pv: e2e4 g8f6 e4e5 f6d5 d2d4 d7d6 mo: 0.45 nc: 2893
-
-wac1:
-depth 1: score: -1988 nodes: 895 pv: f6g4 mo: -nan nc: 0
-depth 2: score: -1992 nodes: 4921 pv: f6g4 c8c7 mo: 0.82 nc: 0
-depth 3: score: -1992 nodes: 18464 pv: f6g4 f7f6 e5g6 mo: 0.86 nc:0
-depth 4: score: 29938 nodes: 125092 pv: g3g6 c6d4 g6h7 mo: 0.93 nc: 36
-depth 5: score: 29939 nodes: 615370 pv: g3g6 c6d4 g6h7 mo: 0.95 nc: 374
-depth 6: score: 29940 nodes: 3859481 pv: g3g6 c6d4 g6h7 mo: 0.96 nc: 3885
-*/

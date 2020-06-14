@@ -9,6 +9,10 @@ class Board
 		std::vector<int> boardState;
 
 		SIDE side = SIDE_WHITE;
+
+		int whiteKingSquare = 0;
+		int blackKingSquare = 0;
+
 		int enPassantSquare = -1;
 		bool whiteKingsideCastle = false;
 		bool whiteQueensideCastle = false;

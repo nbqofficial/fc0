@@ -18,7 +18,7 @@ int SquareToFile64(int square);
 
 int LetterToFile(char letter);
 
-bool AreBoardsEqual(std::vector<int> b1, std::vector<int> b2);
+char FileToLetter(int file);
 
 int RandomFunc(int j);
 

@@ -59,50 +59,12 @@ int SquareToFile64(int square)
 
 int LetterToFile(char letter)
 {
-	int file = 0;
-	switch (letter)
-	{
-	case 'a':
-		file = 0;
-		break;
-	case 'b':
-		file = 1;
-		break;
-	case 'c':
-		file = 2;
-		break;
-	case 'd':
-		file = 3;
-		break;
-	case 'e':
-		file = 4;
-		break;
-	case 'f':
-		file = 5;
-		break;
-	case 'g':
-		file = 6;
-		break;
-	case 'h':
-		file = 7;
-		break;
-	default:
-		file = 0;
-		break;
-	}
-	return file;
+	return (letter - '0') - 49;
 }
 
-bool AreBoardsEqual(std::vector<int> b1, std::vector<int> b2)
+char FileToLetter(int file)
 {
-	for (int i = 0; i < b1.size(); ++i)
-	{
-		if (b1[i] != b2[i])
-		{
-			return false; // not equal
-		}
-	}
-	return true;
+	return (file + '0') + 49;
 }
 
 int RandomFunc(int j)
